@@ -41,3 +41,5 @@ var isValid = function(s) {
     
 };
 ```
+### Min Stack
+
