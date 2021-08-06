@@ -1,5 +1,8 @@
 ## 스택(Stack) 1번 문제
 
+**LeetCode | Valid Parentheses**
+[문제 링크](https://leetcode.com/problems/valid-parentheses/)
+
 ### 코드
 
 - 방법 1
@@ -27,7 +30,7 @@ var isValid = function (s) {
 };
 ```
 
--- 방법 2
+- 방법 2
 
 ```javascript
 /**
@@ -50,6 +53,9 @@ var isValid = function (s) {
 ---
 
 ## 스택(Stack) 2번 문제
+
+**LeetCode | Min Stack**
+[문제 링크](https://leetcode.com/problems/min-stack/)
 
 ### 코드
 
@@ -98,4 +104,93 @@ MinStack.prototype.getMin = function () {
  * var param_3 = obj.top()
  * var param_4 = obj.getMin()
  */
+```
+
+---
+
+## 큐(queue) 1번 문제
+
+**LeetCode | Number of Recent Calls**
+[문제 링크](https://leetcode.com/problems/number-of-recent-calls/)
+
+### 코드
+
+- 방법 1
+
+```javascript
+var RecentCounter = function () {
+	this.queue = [];
+};
+
+/**
+ * @param {number} t
+ * @return {number}
+ */
+RecentCounter.prototype.ping = function (t) {
+	if (this.queue === null) return null;
+	this.queue.push(t);
+	let min = t - 3000;
+	let max = t;
+	let result = [];
+	for (const n of this.queue) {
+		if (n >= min && n <= max) result.push(n);
+	}
+	return result.length;
+};
+
+/**
+ * Your RecentCounter object will be instantiated and called as such:
+ * var obj = new RecentCounter()
+ * var param_1 = obj.ping(t)
+ */
+```
+
+- 방법 2
+
+```javascript
+class RecentCounter {
+	constructor() {
+		this.queue = [];
+	}
+
+	ping(t) {
+		this.queue.push(t);
+		while (this.queue[0] < t - 3000) {
+			this.queue.shift();
+		}
+
+		return this.queue.length;
+	}
+}
+```
+
+---
+
+## 큐(queue) 2번 문제
+
+**Programmers | 프린터**
+[문제 링크](https://programmers.co.kr/learn/courses/30/lessons/42587)
+
+### 코드
+
+```javascript
+function solution(priorities, location) {
+	let answer = 0;
+	let point = location;
+
+	while (true) {
+		let curDoc = priorities.shift();
+		if (priorities.some((e) => e > curDoc)) priorities.push(curDoc);
+		else {
+			answer++;
+			if (point === 0) return answer;
+		}
+
+		point--;
+		if (point === -1) {
+			point = priorities.length - 1;
+		}
+	}
+	return answer;
+}
 ```
