@@ -1,6 +1,7 @@
 ## 스택(Stack) 1번 문제
 
 **LeetCode | Valid Parentheses**
+
 [문제 링크](https://leetcode.com/problems/valid-parentheses/)
 
 ### 코드
@@ -55,6 +56,7 @@ var isValid = function (s) {
 ## 스택(Stack) 2번 문제
 
 **LeetCode | Min Stack**
+
 [문제 링크](https://leetcode.com/problems/min-stack/)
 
 ### 코드
@@ -111,6 +113,7 @@ MinStack.prototype.getMin = function () {
 ## 큐(queue) 1번 문제
 
 **LeetCode | Number of Recent Calls**
+
 [문제 링크](https://leetcode.com/problems/number-of-recent-calls/)
 
 ### 코드
@@ -169,6 +172,7 @@ class RecentCounter {
 ## 큐(queue) 2번 문제
 
 **Programmers | 프린터**
+
 [문제 링크](https://programmers.co.kr/learn/courses/30/lessons/42587)
 
 ### 코드
