@@ -1,9 +1,6 @@
 # 알고리즘 1주차
 
 ## Valid Parentheses
-
-
-
 ### 문제풀이
 문자열에서 대괄호를 일치시키고 올바르게 닫혀있는지 확인하는 문제
 
@@ -45,11 +42,11 @@ var isValid = function(s) {
 ***
 ### Min Stack
 
-### 풀이
+### 문제풀이
 스택을 사용해서 min stack을 구현하는 문제
 1. 들어온 순서대로 쌓아 올리는 스택
 2. 대응하여 현재까지 최소값을 저장하는 스택으로 사용
-##코드
+### 코드
 ```
 /**
  * initialize your data structure here.
