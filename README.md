@@ -37,11 +37,28 @@
 
 - 스택
   - 발표자 : 안솔
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/stack.md
   - 문제
     - https://leetcode.com/problems/valid-parentheses/
     - https://leetcode.com/problems/min-stack/
 - 큐
   - 발표자 : 박유림
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/queue.md
   - 문제
     - https://leetcode.com/problems/number-of-recent-calls/
     - https://programmers.co.kr/learn/courses/30/lessons/42587
+
+# week 02 (2021.08.14)
+
+- 이분탐색
+
+  - 발표자 : 김연재
+  - 문제
+    - https://leetcode.com/problems/intersection-of-two-arrays-ii/
+    - https://leetcode.com/problems/find-the-duplicate-number/
+
+- 해쉬
+  - 발표자 : 우강
+  - 문제
+    - https://programmers.co.kr/learn/courses/30/lessons/42576
+    - https://programmers.co.kr/learn/courses/30/lessons/42578
