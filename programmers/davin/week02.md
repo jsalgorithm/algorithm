@@ -1,15 +1,15 @@
 # 2주차 알고리즘
 ## Intersection of Two Arrays II
-### 문제 풀이
+### 문제 풀이 01
 1. 첫 번째 인자 `nums1`을 순회하면서 `i` 번째 요소가 `nums2`에 있는지 확인한다.
 2. 만약 같은 요소가 `nums2`에 있다면 해당 요소를 `result` 배열에 추가하고,
 `nums2`에서 해당 요소를 삭제한다.
 3. 반복문을 마친 후 `result` 배열을 리턴한다.
 
-### 시간 복잡도
+### 시간 복잡도 01
 반복문 안에서 `indexOf` 메서드를 사용하므로 O(n2)
 
-### 제출 코드
+### 제출 코드 01
 ```javascript
 var intersect = function(nums1, nums2) {
 	const copy = [...nums2];
@@ -27,15 +27,56 @@ var intersect = function(nums1, nums2) {
 };
 ```
 
+### 문제 풀이 02
+1. 인자로 들어온 두 배열을 짧은 배열과 긴 배열로 구분한다.
+2. 긴 배열을 순회하여 각각의 숫자와 숫자가 몇 번 나왔는지 저장한다.
+```javascript
+{
+	// 숫자: 횟수
+	4: 2,
+	8: 1,
+	9: 2,
+}
+```
+3. 짧은 배열을 순회하여 해당 값이 `hashMap`에 있거나 카운트가 0 이상이면 `result`에 그 값을 저장한다. 그 후 `hashMap`에 있는 해당 값에서 1을 뺀다.
+4. `result` 배열을 반환한다.
+
+### 시간 복잡도 02
+반복문 2개를 각각 돌고 있으므로 O(n)
+
+### 제출 코드 02
+```javascript
+var intersect = function(nums1, nums2) {
+	const shortArr = nums1.length < nums2.length ? [...nums1] : [...nums2];
+	const longArr = nums1.length < nums2.length ? [...nums2] : [...nums1];
+	const hashMap = longArr.reduce((acc, cur) => {
+		acc[cur] ? acc[cur] += 1 : acc[cur] = 1;
+		return acc;
+	}, {});
+	const result = [];
+
+	shortArr.forEach((num) => {
+		if (hashMap[num]) {
+			hashMap[num] -= 1;
+			result.push(num);
+		}
+	});
+
+	return result;
+};
+```
+
+***
+
 ## Find the Duplicate Number
-### 문제 풀이
+### 문제 풀이 01
 1. `nums` 배열을 순회하면서 `indexOf`를 이용하여 `i` 번째 요소의 첫 번째 인덱스를 구한다.
 2. `i`와 `firstIndex`의 값이 다를 경우 `i` 번째 요소를 리턴한다.
 
-### 시간 복잡도
+### 시간 복잡도 01
 반복문 안에서 `indexOf` 메서드를 사용하므로 O(n2)
 
-### 제출 코드
+### 제출 코드 01
 ```javascript
 var findDuplicate = function(nums) {
 	for (let i = 0; i < nums.length; i++) {
@@ -47,9 +88,32 @@ var findDuplicate = function(nums) {
 };
 ```
 
+### 문제 풀이 02
+1. `nums` 배열을 복사한 후 정렬한다.
+2. 복사한 배열을 순회하며 `i` 번째 요소와 `i` + 1번째 요소가 같은지 검사한다.  
+만약 값이 같을 경우 `i` 번째 요소를 리턴한다.
+
+### 시간 복잡도 02
+반복문 2개를 각각 돌고 있으므로 O(n)
+
+### 제출 코드 02
+```javascript
+var findDuplicate = function(nums) {
+	const copy = [...nums].sort((a, b) => a - b);
+
+	for (let i = 0; i < copy.length; i++) {
+		if (copy[i] === copy[i + 1]) {
+			return copy[i];
+		}
+	}
+};
+```
+
+***
+
 ## 완주하지 못한 선수
 ### 문제 풀이
-1. `hashMap`을 선언하고 `participant` 배열을 순회하여 각 선수들의 이름과 카운트를 저장한다.
+1. `participant` 배열을 순회하여 각 선수들의 이름과 카운트를 `hashMap`에 저장한다.
 ```javascript
 {
 	mislav: 2,
@@ -66,15 +130,14 @@ var findDuplicate = function(nums) {
 ### 제출 코드
 ```javascript
 function solution(participant, completion) {
-	const hashMap = {};
+	const hashMap = participant.reduce((acc, cur) => {
+		acc[cur] ? acc[cur] += 1 : acc[cur] = 1;
+		return acc;
+	}, {});
 
-	for (let i = 0; i < participant.length; i++) {
-		hashMap[participant[i]] ? hashMap[participant[i]]++ : hashMap[participant[i]] = 1;
-	}
-
-	for (let i = 0; i < completion.length; i++) {
-		hashMap[completion[i]]--;
-	}
+	completion.forEach((name) => {
+		hashMap[name] -= 1;
+	});
 
 	for (let i in hashMap) {
 		if (hashMap[i]) {
@@ -83,6 +146,8 @@ function solution(participant, completion) {
 	}
 }
 ```
+
+***
 
 ## 위장
 ### 문제 풀이
