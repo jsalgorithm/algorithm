@@ -84,4 +84,4 @@ https://youtu.be/Vi0hauJemxA
 + Blog
 https://hsp1116.tistory.com/35
 + Book
-파이썬 알고리즘 인터뷰 p286
+파이썬 알고리즘 인터뷰 p286~
