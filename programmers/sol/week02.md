@@ -1,7 +1,7 @@
 ## 이분탐색(Binary search) 1번 문제
 
-**LeetCode | Intersection of Two Arrays II**
-[문제링크]()
+**LeetCode | Intersection of Two Arrays II**  
+[문제링크](leetcode.com/problems/intersection-of-two-arrays-ii)
 
 ### 시간복잡도
 
@@ -30,7 +30,7 @@ const intersect = (nums1, nums2) => {
 ## 이분탐색(Binary search) 2번 문제
 
 **LeetCode | Find the Duplicate Number**  
-[문제링크]()
+[문제링크](leetcode.com/problems/find-the-duplicate-number)
 
 ### 문제풀이
 
@@ -118,7 +118,8 @@ function solution(participant, completion) {
 
 ## 해시(hash) 2번 문제
 
-**Programmers | 위장**
+**Programmers | 위장**  
+[문제링크](programmers.co.kr/learn/courses/30/lessons/42578)
 
 ### 문제풀이
 
