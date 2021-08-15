@@ -53,12 +53,29 @@
 - 이분탐색
 
   - 발표자 : 김연재
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/binarySearch.md
   - 문제
     - https://leetcode.com/problems/intersection-of-two-arrays-ii/
     - https://leetcode.com/problems/find-the-duplicate-number/
 
 - 해쉬
   - 발표자 : 우강
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/Hash.md
   - 문제
     - https://programmers.co.kr/learn/courses/30/lessons/42576
     - https://programmers.co.kr/learn/courses/30/lessons/42578
+
+
+
+# week 03 (2021.08.21)
+
+- 정렬
+  - 발표자: 정다빈
+  - 문제
+    - https://programmers.co.kr/learn/courses/30/lessons/42748
+    - https://programmers.co.kr/learn/courses/30/lessons/42746
+- 완전탐색
+  - 발표자: 김유진
+  - 문제
+    - https://programmers.co.kr/learn/courses/30/lessons/42840
+    - https://programmers.co.kr/learn/courses/30/lessons/42839
