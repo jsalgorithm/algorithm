@@ -14,7 +14,7 @@
 
 # Valid Parentheses
 
-- 문제 분류: `Stack`
+- 문제 분류: `스택`
 - 문제 출처: [LeetCode - 20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
 - 라벨: `Easy`, `JavaScript`
 
@@ -86,7 +86,7 @@ var isValid = function (s) {
 
 # Min Stack
 
-- 문제 분류: `Stack`
+- 문제 분류: `스택`
 - 문제 출처: [LeetCode - 155. Min Stack](https://leetcode.com/problems/min-stack/)
 - 라벨: `Easy`, `JavaScript`
 
@@ -183,7 +183,7 @@ MinStack.prototype.getMin = function () {
 
 # Number of Recent Calls
 
-- 문제 분류: `Queue`
+- 문제 분류: `큐`
 - 문제 출처: [LeetCode - 944. Number of Recent Calls](https://leetcode.com/problems/number-of-recent-calls/)
 - 라벨: `Easy`, `JavaScript`
 
