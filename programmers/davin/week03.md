@@ -145,3 +145,56 @@ function solution(answers) {
 	}, []);
 }
 ```
+
+## 소수 찾기
+### 문제 풀이
+
+1. `numbers`를 배열로 만들어 재귀 함수를 호출한다.
+2. 재귀 함수는 인자로 받은 배열을 기준으로 반복문을 돈다.
+3. 이 때, 앞자리에서 기준이 될 `pick`을 생성한다. 그리고 `pick`을 제외한 나머지 요소들 `others`를 생성한다.
+4. `store`에 `pick`을 추가한다.
+5. 생성한 `pick`, `others`, `store`를 인자로 넣어 재귀 함수를 호출한다.
+```
+pick = 앞에서 기준이 될 숫자
+others = 기준이 될 숫자와 함께 조합될 숫자들
+store = 만들어진 기준을 저장할 배열
+```
+6. 재귀 함수를 종료한 후, `map()`과 `Number()`를 이용하여 문자열을 숫자로 변환한다.
+7. `filter`를 이용하여 소수가 아닌 숫자들을 필터링한다.
+8. `new Set()`을 이용하여 배열의 중복을 제거한 후, 그 길이를 반환한다.
+
+### 제출 코드
+```javascript
+function recursive({ selected = '', rest, store = [] }) {
+	for (let i = 0; i < rest.length; i++) {
+		const pick = selected + rest[i];
+		const others = rest.filter((_, index) => index !== i);
+		store.push(pick);
+		recursive({ selected: pick, rest: others, store });
+	}
+	return store;
+}
+
+function isPrime(number) {
+	if (number <= 1) {
+		return false;
+	}
+	if (number === 2) {
+		return true;
+	}
+	for (let i = 2; i <= Math.sqrt(number); i++) {
+		if (number % i === 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
+function solution(numbers) {
+	const result = recursive({ rest: numbers.split('') })
+		.map((string) => Number(string))
+		.filter((number) => isPrime(number));
+
+	return [...new Set(result)].length;
+}
+```
