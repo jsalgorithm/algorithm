@@ -15,7 +15,7 @@
 # K번째수
 
 - 문제 분류: `정렬`
-- 문제 출처: [프로그래머스 level01. K번째수](https://programmers.co.kr/learn/courses/30/lessons/42748)
+- 문제 출처: [프로그래머스 Level 1 - K번째수](https://programmers.co.kr/learn/courses/30/lessons/42748)
 - 라벨: `Level 1`, `JavaScript`
 
 ## 문제
@@ -79,7 +79,7 @@ function solution(array, commands) {
 # 가장 큰 수
 
 - 문제 분류: `정렬`
-- 문제 출처: [프로그래머스 level02. 가장 큰 수](https://programmers.co.kr/learn/courses/30/lessons/42746)
+- 문제 출처: [프로그래머스 Level 2 - 가장 큰 수](https://programmers.co.kr/learn/courses/30/lessons/42746)
 - 라벨: `Level 2`, `JavaScript`
 
 ## 문제
@@ -169,7 +169,7 @@ const result = solution(numbers);
 # 모의고사
 
 - 문제 분류: `완전탐색`
-- 문제 출처: [프로그래머스 level01. 모의고사](https://programmers.co.kr/learn/courses/30/lessons/42746)
+- 문제 출처: [프로그래머스 Level 1 - 모의고사](https://programmers.co.kr/learn/courses/30/lessons/42746)
 - 라벨: `Level 1`, `JavaScript`
 
 ## 문제
@@ -258,7 +258,7 @@ function solution(answers) {
 # 소수 찾기
 
 - 문제 분류: `완전탐색`
-- 문제 출처: [프로그래머스 level02. 소수 찾기](https://programmers.co.kr/learn/courses/30/lessons/42839)
+- 문제 출처: [프로그래머스 Level 2 - 소수 찾기](https://programmers.co.kr/learn/courses/30/lessons/42839)
 - 라벨: `Level 2`, `JavaScript`
 
 ## 문제
@@ -268,12 +268,6 @@ function solution(answers) {
 
 ## 풀이 과정
 
-- 시간 복잡도: O(n^3) 예상
-
-  - `solution()` 내부 for문(numbers의 길이가 n이라고 가정할 때 n번 반복)
-  - `getPermutations()` 내부 forEach문(최대 n번 반복)
-  - `solution()`의 `map`
-
 - numbers 문자열을 `split()`으로 쪼개 배열(`splitArr`)로 만든다.
 - `getPermutations()` 함수를 사용해 조합가능한 모든 경우를 구한다. (`numbers`의 숫자가 `"011"`이라면 이중에서 1개, 2개, 3개를 뽑아 조합가능한 모든 경우를 구한다.)
 - 조합가능한 경우(ex.`["0", "1"]`)를 `join()`으로 이어붙이고(`"01"`) 숫자로 바꾼다.(`1`이됨) 이를 배열(`candiArr`)에 추가한다.
@@ -281,6 +275,12 @@ function solution(answers) {
 - Set(`candiSet`)에서 하나씩 꺼내며 소수인지 검사하고 소수인 경우 `answer`를 증가시킨다.
 
 ## 제출 코드
+
+- 시간 복잡도: O(n^3) 예상
+
+  - `solution()` 내부 for문(numbers의 길이가 n이라고 가정할 때 n번 반복)
+  - `getPermutations()` 내부 forEach문(최대 n번 반복)
+  - `solution()`의 `map`
 
 ```js
 function getPermutations(arr, selectNumber) {
