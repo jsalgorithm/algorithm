@@ -161,7 +161,11 @@ solution("17");
 1. 풀이내용
    1. 완전탐색에서 자주 나오는 순열을 이용해야하는 문제였던 것 같다..
    
-      ![]()
+      ![](https://github.com/jsalgorithm/algorithm/blob/main/programmers/1mg/KakaoTalk_Photo_2021-08-21-10-24-54.jpeg?raw=true)
+   
+   2. 재귀함수를 왜 써야하는지 잘 알려주었던.. 문제...
+   
+      
 
 
 
