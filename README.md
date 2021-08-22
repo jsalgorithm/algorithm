@@ -71,11 +71,27 @@
 
 - 정렬
   - 발표자: 정다빈
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/sort.md
   - 문제
     - https://programmers.co.kr/learn/courses/30/lessons/42748
     - https://programmers.co.kr/learn/courses/30/lessons/42746
 - 완전탐색
   - 발표자: 김유진
+    - 
   - 문제
     - https://programmers.co.kr/learn/courses/30/lessons/42840
     - https://programmers.co.kr/learn/courses/30/lessons/42839
+
+# week04(2021.08.28)
+
+- 힙
+  - 발표자: 정다빈
+- 문제
+  - https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
+  - https://leetcode.com/problems/last-stone-weight/
+- 이진트리
+  - 발표자: 우강
+- 문제
+  - https://leetcode.com/problems/maximum-depth-of-binary-tree/
+  - https://leetcode.com/problems/diameter-of-binary-tree/
+
