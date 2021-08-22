@@ -86,12 +86,12 @@
 
 - 힙
   - 발표자: 정다빈
-- 문제
-  - https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
-  - https://leetcode.com/problems/last-stone-weight/
+  - 문제
+    - https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
+    - https://leetcode.com/problems/last-stone-weight/
 - 이진트리
   - 발표자: 우강
-- 문제
-  - https://leetcode.com/problems/maximum-depth-of-binary-tree/
-  - https://leetcode.com/problems/diameter-of-binary-tree/
+  - 문제
+    - https://leetcode.com/problems/maximum-depth-of-binary-tree/
+    - https://leetcode.com/problems/diameter-of-binary-tree/
 
