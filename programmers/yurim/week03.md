@@ -27,12 +27,12 @@ commands 배열은 [i, j, k] 형태의 원소를 가지는 2차원 배열이다.
 3. `2번`에서 나온 (정렬된) 배열에서 k번째 숫자를 찾는다.
 4. 이렇게 commands를 돌며 `3번`에서 나온 숫자들을 배열에 담아 최종적으로 리턴한다.
 
-## 풀이 과정
+## 풀이1
 
 - commands 배열을 `forEach`로 순회하며 아래 과정을 반복한다.
 - `slice()` 함수를 이용해 array를 자른다.
-- 잘린 배열을 slicing 변수에 담고, `sort()`로 정렬한다.
-- slicing 배열에서 k번째 수를 찾아 answer 배열에 넣는다. (slicing 배열은 반복마다 초기화해서 사용한다.)
+- 잘린 배열(`slicing`)을 `sort()`로 정렬한다.
+- 잘린 배열(`slicing`)에서 k번째 수를 찾아 정답 배열(`answer`)에 넣는다.
 
 > 🏷️ Syntax
 >
@@ -43,30 +43,35 @@ commands 배열은 [i, j, k] 형태의 원소를 가지는 2차원 배열이다.
 >   - ex) `[a, b] = [10, 20];`
 >   - 참고: [구조 분해 할당 - MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
-## 제출 코드
-
-- 시간 복잡도: O(n^2) 으로 예상
-  - `commands 반복 x sort로 정렬`
-  - 자바스크립트의 `sort()` 함수가 호출될 때 정렬 알고리즘을 사용하는지는 JS엔진에 따라 달라질 수 있다고 한다.
+### 풀이1 코드
 
 ```js
 function solution(array, commands) {
-  var answer = [];
-  let slicing = [];
+  let answer = [];
   commands.forEach((command) => {
-    slicing = array.slice(command[0] - 1, command[1]); // array의 i ~ j번째까지 잘라 새로운 배열에 저장
-
+    const slicing = array.slice(command[0] - 1, command[1]); // array의 i ~ j번째까지 잘라 새로운 배열에 저장
     slicing.sort((a, b) => a - b); // 정렬
-
     answer.push(slicing[command[2] - 1]);
-
-    slicing = []; // slicing 배열 초기화
   });
   return answer;
 }
 ```
 
-## 다른 풀이
+- 시간 복잡도: O(n^2) 보다 클 것으로 예상
+  - 반복문 안에서 `sort()` 실행하므로
+
+> 💡 `sort()`의 시간 복잡도
+>
+> - 자바스크립트의 `sort()` 메서드가 호출될 때 어떤 정렬 알고리즘을 사용하는지는 JS엔진에 따라 달라질 수 있다고 한다.
+> - Chrome, Firefox의 경우 `sort()`는 `O(n log n)`의 시간복잡도를 갖는다고 한다.
+
+![image](https://user-images.githubusercontent.com/33214449/130450316-4fcba71c-2fdb-4bac-adb0-4f799db57161.png)
+
+## 풀이2
+
+풀이1의 코드를 간단하게 바꿨다.
+
+### 풀이2 코드
 
 ```js
 function solution(array, commands) {
@@ -75,6 +80,50 @@ function solution(array, commands) {
   );
 }
 ```
+
+- 시간 복잡도: 풀이1과 동일. O(n^2)보다 클 것으로 예상
+
+## 풀이3
+
+- 정렬 알고리즘 중에서 **버블 정렬**을 사용해 문제를 풀었다.
+- 버블 정렬 개선: 이미 정렬되어 있는 배열의 경우 반복문을 빨리 벗어날 수 있도록 코드를 작성했다.(`exchg` 변수 관련)
+
+### 풀이3 코드
+
+```js
+function bubbleSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let exchg = 0;
+    for (let j = 0; j < arr.length - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        const temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+        exchg++;
+      }
+    }
+    if (!exchg) break;
+  }
+
+  return arr;
+}
+
+function solution(array, commands) {
+  let answer = [];
+  answer = commands.map(([i, j, k]) => {
+    const slicing = bubbleSort(array.slice(i - 1, j));
+    return slicing[k - 1];
+  });
+  return answer;
+}
+```
+
+- 시간 복잡도: O(n^3)
+  - `map` 반복 안에서 이중 for문이 실행되므로
+
+![image](https://user-images.githubusercontent.com/33214449/130456661-f418c230-0314-400c-bb1b-556bff4ed2fc.png)
+
+- 이 풀이의 경우 `sort()`를 사용했을 때보다 시간이 좀 더 걸리는 것을 알 수 있다.
 
 # 가장 큰 수
 
@@ -88,12 +137,15 @@ function solution(array, commands) {
 - 입력: 0 또는 양의 정수로 이루어진 배열
 - 출력: 이어붙여 만들 수 있는 가장 큰 수를 알아내 문자열로 리턴
 
-## 풀이 과정
+## 풀이1
 
-- `numbers.map((num) => num + '')`: numbers 배열의 각 숫자들을 문자열로 변환한다.
-- `sort((a, b) => b + a - (a + b))`: 문자열로 변환된 숫자들을 조합하며 비교해 정렬한다. ('6', '10' => '106'-'610' => '610'이 더 크기 때문에 '6'이 배열의 앞쪽으로 갈 것이다.)
-- `join('')`: 정렬이 완료된 후 배열의 요소들을 잇는다.
-- `return answer[0] === '0' ? '0' : answer;`: 문자열이 0으로만 구성되어있을 경우 0을 리턴한다.(`"0000"`일 수도 있기 때문)
+- numbers 배열의 각 숫자들을 문자열로 변환한다.
+  - `numbers.map((num) => num + '')`
+- 문자열로 변환된 숫자들을 조합하며 비교해 정렬한다. ('6', '10' => '106'-'610' => '610'이 더 크기 때문에 '6'이 배열의 앞쪽으로 갈 것이다.)
+  - `sort((a, b) => b + a - (a + b))`
+- 정렬이 완료된 후 배열의 요소들을 잇는다. `join('')`
+- 문자열이 `0`으로만 구성되어있을 경우 `0`을 리턴한다.(`"0000"`일 수도 있기 때문)
+  - `return answer[0] === '0' ? '0' : answer;`
 
 > 🏷️ Syntax
 >
@@ -104,12 +156,7 @@ function solution(array, commands) {
 > - 빈 배열에 map을 돌리면 당연히 돌지 않고 빈배열이 반환된다.
 > - push() 할 때 인자가 생략되면 아무 것도 추가되지 않는다.(당연)
 
-## 제출 코드
-
-- 시간 복잡도: O(n^2)
-
-  - `map`은 n번 돈다. (❓ map과 sort를 중첩으로 인식해야하는지?)
-  - `sort()`에서 비교할 때 비교하는 횟수가 n, n-1, n-2, ... 이렇게 작아질 것 같기 때문
+### 풀이1 코드
 
 ```js
 function solution(numbers) {
@@ -123,10 +170,20 @@ function solution(numbers) {
 }
 ```
 
-## 다른 풀이(통과X)
+- 시간 복잡도: O(n log n)
+
+  - `map`은 n번 돈다. O(n)
+  - `sort()`에서 비교할 때 비교하는 횟수가 n, n-1, n-2, ... 이렇게 작아질 것 같다. 일단 Chrome에서 `sort()`의 시간 복잡도는 O(n log n) 이다.
+  - O(n) + O(n log n) + ... 의 경우 시간 복잡도가 가장 큰 것을 선택하면 된다.
+
+> 시간 복잡도 계산시, `.(dot)` 문법으로 이어진 것은 중첩이 아니다.
+
+## 풀이2 (통과X)
 
 - 순열을 이용해 모든 경우의 수를 구한 뒤 이중에서 최대값을 구했다.
 - 테스트 케이스 2가지는 통과하나 제출시 `signal: aborted (core dumped)`나 `런타임 에러`가 발생한다. 리턴조건이 잘못 작성되어 재귀 호출이 너무 깊어져 에러가 나는건가 싶은데 정확히 모르겠다.
+
+### 풀이2 코드
 
 ```js
 function getPermutations(arr) {
@@ -181,16 +238,14 @@ const result = solution(numbers);
 - 2번 수포자가 정답을 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, ...(반복)
 - 3번 수포자가 정답을 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...(반복)
 
-## 풀이 과정
+## 풀이1
 
-- 문제수에 맞춰 1,2,3번 수포자의 정답지를 담은 배열 확장(`extendArr()함수`)
-- `answers`의 length만큼 돌며 1,2,3번 수포자의 정답지와 비교해 사람마다 정답을 맞춘 개수를 리턴(`compArr()함수`)
-- 가장 많이 맞춘 정답 개수를 찾아 `max` 변수에 저장. `max`만큼 정답을 맞춘 사람을 찾아 `answer` 배열에 저장(가장 많이 맞힌 사람이 여러명일 수 있음)
-- `answer` 배열을 오름차순으로 정렬하고 최종적으로 리턴
+- 문제수에 맞춰 1,2,3번 수포자의 정답지를 담은 배열을 확장한다.(`extendArr()함수`) (`문제수 > 수포자의 답`인 경우를 대비하기 위해 배열을 확장하는 것이다.)
+- 정답이 담긴 배열을 돌면서 수포자 1,2,3의 정답지와 비교해 사람마다 정답을 맞춘 개수를 리턴한다. (`compArr()함수`)
+- 가장 많이 맞춘 정답 개수를 찾아 `max` 변수에 저장한다. `max`만큼 정답을 맞춘 사람을 찾아 `answer` 배열에 저장한다.(가장 많이 맞힌 사람이 여러명일 수 있기 때문)
+- `answer` 배열을 오름차순으로 정렬하고 최종적으로 리턴한다.
 
-## 제출 코드
-
-- 시간 복잡도: O(n)
+### 풀이1 코드
 
 ```js
 function extendArr(arr, len) {
@@ -255,6 +310,66 @@ function solution(answers) {
 }
 ```
 
+- 시간 복잡도: O(n)
+
+![image](https://user-images.githubusercontent.com/33214449/130462631-697751eb-3d87-4ab0-97f2-767f862e7e2b.png)
+
+## 풀이2 (풀이1 개선)
+
+풀이1처럼 배열을 확장하지 않고 나머지 연산(`%`)으로 정답과 수포자들의 답을 비교할 수 있도록 수정했다.
+
+### 풀이2 코드
+
+```js
+function solution(answers) {
+  let answer = [];
+  const obj = [];
+
+  const supoja1 = [1, 2, 3, 4, 5];
+  const supoja2 = [2, 1, 2, 3, 2, 4, 2, 5];
+  const supoja3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+  let count1 = 0,
+    count2 = 0,
+    count3 = 0;
+
+  for (let i = 0; i < answers.length; i++) {
+    if (supoja1[i % supoja1.length] === answers[i]) count1++;
+    if (supoja2[i % supoja2.length] === answers[i]) count2++;
+    if (supoja3[i % supoja3.length] === answers[i]) count3++;
+  }
+
+  obj.push(
+    {
+      id: 1,
+      ans_cnt: count1,
+    },
+    {
+      id: 2,
+      ans_cnt: count2,
+    },
+    {
+      id: 3,
+      ans_cnt: count3,
+    }
+  );
+
+  const max = obj.reduce((a, b) => (a.ans_cnt > b.ans_cnt ? a : b)).ans_cnt;
+  const new_obj = obj.filter((elem) => elem.ans_cnt === max);
+  answer = new_obj.map((elem) => elem.id);
+  answer.sort((a, b) => a - b);
+
+  return answer;
+}
+
+// solution([1, 2, 3, 4, 5]);
+```
+
+- 시간 복잡도: O(n)
+
+![image](https://user-images.githubusercontent.com/33214449/130462820-2b4cc8a0-5686-4312-9d54-927f5d64388f.png)
+
+풀이1 보다 알고리즘 실행 시간이 개선되었다.
+
 # 소수 찾기
 
 - 문제 분류: `완전탐색`
@@ -266,21 +381,15 @@ function solution(answers) {
 - 입력: 문자열(`"013"`은 0, 1, 3 숫자가 적힌 종이 조각이라는 의미)
 - 출력: 종이 조각에 쓰여진 숫자를 조합해 만들 수 있는 **소수**가 몇개인지 리턴 = 숫자
 
-## 풀이 과정
+## 풀이
 
-- numbers 문자열을 `split()`으로 쪼개 배열(`splitArr`)로 만든다.
-- `getPermutations()` 함수를 사용해 조합가능한 모든 경우를 구한다. (`numbers`의 숫자가 `"011"`이라면 이중에서 1개, 2개, 3개를 뽑아 조합가능한 모든 경우를 구한다.)
+- `numbers` 문자열을 `split()`으로 쪼개 배열(`splitArr`)로 만든다.
+- 순열을 사용해 가능한 모든 경우의 수를 구한다.(`getPermutations()`) 순열을 사용하는 이유는 0과 1을 뽑는 것과 1과 0을 뽑는 것은 다르기 때문이다. (`numbers`의 숫자가 `"011"`이라면 이중에서 1개, 2개, 3개를 뽑아 조합가능한 모든 경우를 구한다.)
 - 조합가능한 경우(ex.`["0", "1"]`)를 `join()`으로 이어붙이고(`"01"`) 숫자로 바꾼다.(`1`이됨) 이를 배열(`candiArr`)에 추가한다.
 - 조합가능한 경우가 담긴 배열(`candiArr`)을 Set(`candiSet`)으로 만들어 중복을 제거한다.
-- Set(`candiSet`)에서 하나씩 꺼내며 소수인지 검사하고 소수인 경우 `answer`를 증가시킨다.
+- Set(`candiSet`)에서 하나씩 꺼내며 소수인지 검사하고 소수인 경우 `answer`값을 증가시킨다.
 
-## 제출 코드
-
-- 시간 복잡도: O(n^3) 예상
-
-  - `solution()` 내부 for문(numbers의 길이가 n이라고 가정할 때 n번 반복)
-  - `getPermutations()` 내부 forEach문(최대 n번 반복)
-  - `solution()`의 `map`
+### 풀이1 코드
 
 ```js
 function getPermutations(arr, selectNumber) {
@@ -336,6 +445,10 @@ function solution(numbers) {
   return answer;
 }
 ```
+
+- 시간 복잡도: O(n^2)보다 클 것으로 예상
+
+  - `solution()` 내부 for 반복문(numbers의 길이가 n이라고 가정할 때 n번 반복) 안에서 `getPermutations()` 내부 forEach문(최대 n번 반복)이 실행되므로
 
 ![image](https://user-images.githubusercontent.com/33214449/130092530-b3ae0447-c2da-4476-90ff-dfc91f59b670.png)
 
