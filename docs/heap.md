@@ -55,7 +55,7 @@
 
 ## 힙 구현
 ```javascript
-class Heap{
+class Heap {
   constructor() {
     this.items = [];
   }
