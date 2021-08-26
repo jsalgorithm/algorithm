@@ -70,3 +70,83 @@ var diameterOfBinaryTree = function(root) {
   return count;
 };
 ```
+
+## Maximum Product of Two Elements in an Array
+### 문제 풀이
+1. 클래스로 최대 힙을 구현한다.
+2. 최대 힙의 인스턴스를 만든 후 `nums` 배열을 순회하며 값을 추가한다.
+3. 느슨하게 정렬된 최대 힙에서 루트 노드를 2번씩 추출한다.
+4. 추출된 값에서 -1씩 빼고 곱한 값을 반환한다.
+
+### 제출 코드
+```javascript
+class Heap {
+  constructor() {
+    this.items = [];
+  }
+  
+  swap = (indexA, indexB) => {
+    const temp = this.items[indexA];
+
+    this.items[indexA] = this.items[indexB];
+    this.items[indexB] = temp;
+  };
+
+  getLeftChildIndex = (index) => index * 2 + 1;
+
+  getRightChildIndex = (index) => index * 2 + 2;
+
+  getParentIndex = (index) => Math.floor((index - 1) / 2);
+
+  getLeftChild = (index) => this.items[this.getLeftChildIndex(index)];
+
+  getRightChild = (index) => this.items[this.getRightChildIndex(index)];
+
+  getParent = (index) => this.items[this.getParentIndex(index)];
+  
+  bubbleUp = () => {
+    let index = this.items.length - 1;
+
+    while (this.getParent(index) !== undefined && this.getParent(index) < this.items[index]) {
+      this.swap(index, this.getParentIndex(index));
+      index = this.getParentIndex(index);
+    }
+  };
+  
+  bubbleDown = () => {
+    let index = 0;
+      
+    while(
+      this.getLeftChild(index)  !== undefined &&
+      (this.getLeftChild(index) > this.items[index] || this.getRightChild(index) > this.items[index])
+    ) {
+      const largerIndex = this.getLeftChild(index) > this.getRightChild(index)
+        ? this.getLeftChildIndex(index)
+        : this.getRightChildIndex(index);
+      this.swap(largerIndex, index);
+      index = largerIndex;
+    }
+  };
+  
+  add = (item) => {
+    this.items.push(item);
+    this.bubbleUp();
+  };
+  
+  remove = () => {
+    const rootItem = this.items[0];
+
+    this.items[0] = this.items[this.items.length - 1];
+    this.items.pop();
+    this.bubbleDown();
+    
+    return rootItem;
+  };
+}
+
+var maxProduct = function(nums) {
+  const heap = new Heap();
+  nums.forEach((n) => heap.add(n));
+  return (heap.remove() - 1) * (heap.remove() - 1);
+};
+```

@@ -144,9 +144,10 @@ class MinHeap extends Heap{
   remove() {
     const rootItem = this.items[0];
 
-    this.items[0] = this.items.pop();
+    this.items[0] = this.items[this.items.length - 1];
+    this.items.pop();
     this.bubbleDown();
-
+    
     return rootItem;
   }
 }
