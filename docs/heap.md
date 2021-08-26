@@ -33,9 +33,10 @@
 완전 이진 트리를 기본으로 하기 때문에 비어있는 공간이 없어 배열로 구현하기에 용이하다.
 
 ### 부모 노드와 자식 노드의 관계
-- 왼쪽 자식의 인덱스 : `부모의 인덱스` * 2
-- 오른쪽 자식의 인덱스 : `부모의 인덱스` * 2 + 1
-- 부모의 인덱스 : `자식의 인덱스` / 2
+- 자신 : N
+- 부모 :  (N - 1) / 2
+- 왼쪽 자식 : (N * 2) + 1
+- 오른쪽 자식 : (N * 2) + 2
 ![](img/heap_04.png)
 
 ## 삽입과 삭제로 깨진 힙을 재구조화하기 (heapify)
@@ -52,96 +53,97 @@
 루트 노드가 삭제되면 가장 말단 노드를 루트 노드 자리에 대체한 후 재구조화 과정을 수행한다(힙으로 구현된 우선순위 큐에서도 가장 우선순위가 큰 루트 노드를 주로 삭제한다. 삭제 과정은 위에서 아래로 재구조화 과정이 이루어지게 된다.
 ![](img/heap_06.png)
 
+## 힙 구현
+```javascript
+class Heap{
+  constructor() {
+    this.items = [];
+  }
+  
+  // 값을 서로 바꾸는 메서드
+  swap(indexA, indexB) {
+    const temp = this.items[indexA];
+
+    this.items[indexA] = this.items[indexB];
+    this.items[indexB] = temp;
+  }
+
+  // 부모의 인덱스를 구하는 메서드
+  parentIndex(index) {
+    return Math.floor((index - 1) / 2);
+  }
+
+  // 왼쪽 자식의 인덱스를 구하는 메서드
+  leftChildIndex(index) {
+    return index * 2 + 1;
+  }
+
+  // 오른쪽 자식의 인덱스 구하는 메서드
+  rightChildIndex(index) {
+    return index * 2 + 2;
+  }
+
+  // 부모 노드를 구하는 메서드
+  parent(index) {
+    return this.items[this.parentIndex(index)];
+  }
+
+  // 왼쪽 자식 노드를 구하는 메서드
+  leftChild(index) {
+    return this.items[this.leftChildIndex(index)];
+  }
+
+  // 오른쪽 자식 노드를 구하는 메서드
+  rightChild(index) {
+    return this.items[this.rightChildIndex(index)];
+  }
+}
+```
+
 ## 최소 힙 구현
 ```javascript
-class Heap {
-  constructor() {
-    this.heap = [];
+class MinHeap extends Heap{
+  // 추가된 노드가 제자리를 찾아가도록 재구조화하는 메서드
+  bubbleUp() {
+    let index = this.items.length - 1;
+
+    while (this.parent(index) !== undefined && this.parent(index) > this.items[index]) {
+      this.swap(index, this.parentIndex(index));
+      index = this.parentIndex(index);
+    }
   }
 
-  // 왼쪽 자식의 인덱스 구하기
-  getLeftChildIndex = (parentIndex) => parentIndex * 2;
-
-  // 오른쪽 자식의 인덱스 구하기
-  getRightChildIndex = (parentIndex) => parentIndex * 2 + 1;
-
-  // 부모의 인덱스 구하기
-  getParentIndex = (childIndex) => Math.floor(childIndex / 2);
-
-  // 최상위 노드 구하기
-  peek = () => this.heap[0];
-
-  // 삽입
-  insert = (key, value) => {
-    const node = { key, value };
-    this.heap.push(node);
-    this.heapifyUp();
-  };
-
-  // 삽입한 노드가 제 자리를 찾을 수 있도록 재구조화
-  heapifyUp = () => {
-    let index = this.heap.length - 1;
-    const lastInsertedNode = this.heap[index];
-
-    while (index > 0) {
-      const parentIndex = this.getParentIndex(index);
-
-      if (this.heap[parentIndex].key > lastInsertedNode.key) {
-        this.heap[index] = this.heap[parentIndex];
-        index = parentIndex;
-      } else {
-        break;
-      }
-    }
-
-    this.heap[index] = lastInsertedNode;
-  }
-
-  // 삭제
-  remove = () => {
-    const count = this.heap.length;
-    const rootNode = this.heap[0];
-
-    if (count <= 0) {
-      return undefined;
-    }
-
-    if (count === 1) {
-      this.heap = [];
-    } else {
-      this.heap[0] = this.heap.pop();
-      this.heapifyDown();
-    }
-
-    return rootNode;
-  }
-
-  // 변경된 루트 노드가 제 자리를 찾을 수 있도록 재구조화
-  heapifyDown = () => {
+  // 루트 노드가 제자리를 찾아가도록 재구조화하는 메서드
+  bubbleDown() {
     let index = 0;
-    const count = this.heap.length;
-    const rootNode = this.heap[index];
 
-    while (this.getLeftChildIndex(index) < count) {
-      let smallerChildIndex = null;
-      const leftChildIndex = this.getLeftChildIndex(index);
-      const rightChildIndex = this.getRightChildIndex(index);
-      
-      if (rightChildIndex < count && this.heap[rightChildIndex].key < this.heap[leftChildIndex].key) {
-        smallerChildIndex = rightChildIndex;
-      } else {
-        smallerChildIndex = leftChildIndex;
-      }
+    while (
+      this.leftChild(index) !== undefined &&
+      (this.leftChild(index) < this.items[index] || this.rightChild(index) < this.items[index])
+    ) {
+      const smallerIndex = this.leftChild(index) < this.rightChild(index)
+        ? this.leftChildIndex(index)
+        : this.rightChildIndex(index);
 
-      if (this.heap[smallerChildIndex].key <= rootNode.key) {
-        this.heap[index] = this.heap[smallerChildIndex];
-        index = smallerChildIndex;
-      } else {
-        break;
-      }
+      this.swap(index, smallerIndex);
+      index = smallerIndex;
     }
+  }
 
-    this.heap[index] = rootNode;
+  // 힙에 노드를 추가하는 메서드
+  add(item) {
+    this.items.push(item);
+    this.bubbleUp();
+  }
+
+  // 힙에서 노드를 삭제하는 메서드
+  remove() {
+    const rootItem = this.items[0];
+
+    this.items[0] = this.items.pop();
+    this.bubbleDown();
+
+    return rootItem;
   }
 }
 ```
