@@ -292,6 +292,10 @@ var maxProduct = function (nums) {
 
 ![image](https://user-images.githubusercontent.com/33214449/131165912-75afd90d-2f34-41e1-a4b0-b41389fe6567.png)
 
+## Ref
+
+- [자바스크립트로 힙 (Heap) 구현하기](https://velog.io/@cada/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%A1%9C-%ED%9E%99-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0#%EC%82%BD%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-%EA%B5%AC%ED%98%84) 최대 히프 삽입 코드 참고
+
 # Diameter of Binary Tree
 
 - 문제 분류: `힙`
