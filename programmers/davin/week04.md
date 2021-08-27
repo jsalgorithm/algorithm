@@ -150,3 +150,94 @@ var maxProduct = function(nums) {
   return (heap.remove() - 1) * (heap.remove() - 1);
 };
 ```
+
+## Last Stone Weight
+### 문제 풀이
+1. 클래스로 최대 힙을 구현한다.
+2. 최대 힙의 인스턴스를 만든 후 `stones` 배열을 순회하며 값을 추가한다.
+3. 느슨하게 정렬된 최대 힙의 `length`가 1이 될 때까지 `while` 문을 돌린다.
+4. `while` 문 내에서 루트 노드를 2개씩 추출한 후, `첫 번째 값(더 큰 값) - 두 번째 값(더 작은 값)`을 다시 최대 힙에 추가한다.
+5. 최대 힙에 마지막으로 남은 값을 반환한다.
+
+### 제출 코드
+```javascript
+class Heap {
+  constructor() {
+    this.items = [];
+  }
+  
+  swap = (indexA, indexB) => {
+    const temp = this.items[indexA];
+
+    this.items[indexA] = this.items[indexB];
+    this.items[indexB] = temp;
+  };
+
+  getLeftChildIndex = (index) => index * 2 + 1;
+
+  getRightChildIndex = (index) => index * 2 + 2;
+
+  getParentIndex = (index) => Math.floor((index - 1) / 2);
+
+  getLeftChild = (index) => this.items[this.getLeftChildIndex(index)];
+
+  getRightChild = (index) => this.items[this.getRightChildIndex(index)];
+
+  getParent = (index) => this.items[this.getParentIndex(index)];
+  
+  bubbleUp = () => {
+    let index = this.items.length - 1;
+
+    while (this.getParent(index) !== undefined && this.getParent(index) < this.items[index]) {
+      this.swap(index, this.getParentIndex(index));
+      index = this.getParentIndex(index);
+    }
+  };
+  
+  bubbleDown = () => {
+    let index = 0;
+    while(
+      this.getLeftChild(index)  !== undefined &&
+      (this.getLeftChild(index) > this.items[index] || this.getRightChild(index) > this.items[index])
+    ) {
+      
+      const largerIndex = (this.getLeftChild(index) || 0) > (this.getRightChild(index) || 0)
+        ? this.getLeftChildIndex(index)
+        : this.getRightChildIndex(index);
+      this.swap(largerIndex, index);
+      index = largerIndex;
+    }
+  };
+  
+  add = (item) => {
+    this.items.push(item);
+    this.bubbleUp();
+  };
+  
+  remove = () => {
+    const rootItem = this.items[0];
+
+    this.items[0] = this.items[this.items.length - 1];
+    this.items.pop();
+    this.bubbleDown();
+    
+    return rootItem;
+  };
+}
+
+var lastStoneWeight = function(stones) {
+  const heap = new Heap();
+  
+  stones.forEach((weight) => {
+    heap.add(weight);
+  });
+  
+  while (heap.items.length > 1) {
+    const stoneA = heap.remove();
+    const stoneB = heap.remove();
+    heap.add(stoneA - stoneB);
+  }
+
+  return heap.items[0];
+};
+```
