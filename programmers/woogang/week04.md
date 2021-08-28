@@ -52,7 +52,7 @@ var maxDepthHandler = function (root, num) {
 };
 ```
 ***
-## Maximum Depth of Binary Tree
+## Diameter of Binary Tree
 ### 코드 및 풀이과정
 
 + 트리의 지름 = 가장 멀리 떨어져있는 두 노드의 거리
