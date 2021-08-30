@@ -83,7 +83,7 @@
     - https://programmers.co.kr/learn/courses/30/lessons/42748
     - https://programmers.co.kr/learn/courses/30/lessons/42746
 - 완전탐색
-  - ## 발표자: 김유진
+  - 발표자: 김유진
   - 문제
     - https://programmers.co.kr/learn/courses/30/lessons/42840
     - https://programmers.co.kr/learn/courses/30/lessons/42839
