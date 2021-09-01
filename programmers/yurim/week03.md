@@ -20,6 +20,8 @@
 
 ## 문제
 
+![image](https://user-images.githubusercontent.com/33214449/130100040-c1809cba-4470-47dc-a96f-f000041e1d65.png)
+
 commands 배열은 [i, j, k] 형태의 원소를 가지는 2차원 배열이다. 1차원 배열 array에 대해 commands의 모든 각각의 원소를 적용해야 한다.
 
 1. array의 i번째부터 j번째까지 자른다.
@@ -125,6 +127,11 @@ function solution(array, commands) {
 
 - 이 풀이의 경우 `sort()`를 사용했을 때보다 시간이 좀 더 걸리는 것을 알 수 있다.
 
+## References
+
+- [프로그래머스/javascript K번째 수](https://velog.io/@fastpace04/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4JavaScript-K%EB%B2%88%EC%A7%B8-%EC%88%98)
+- [for, forEach, map](https://m.blog.naver.com/wideeyed/221877912230)
+
 # 가장 큰 수
 
 - 문제 분류: `정렬`
@@ -132,6 +139,8 @@ function solution(array, commands) {
 - 라벨: `Level 2`, `JavaScript`
 
 ## 문제
+
+![image](https://user-images.githubusercontent.com/33214449/130098755-c793b100-41e9-4b04-9923-ca2936dd4aeb.png)
 
 - 0 또는 양의 정수로 이루어진 `numbers` 배열에서 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내는 문제
 - 입력: 0 또는 양의 정수로 이루어진 배열
@@ -230,6 +239,8 @@ const result = solution(numbers);
 - 라벨: `Level 1`, `JavaScript`
 
 ## 문제
+
+![image](https://user-images.githubusercontent.com/33214449/130099885-2af9dc07-5823-4beb-8a51-a7ed55a86217.png)
 
 - 입력: 모의고사 정답이 순서대로 담긴 배열 `answers`
 - 출력: 정답을 가장 많이 맞춘 사람의 번호를 배열에 담아 리턴(오름차순으로 정렬할 것)
@@ -377,6 +388,8 @@ function solution(answers) {
 - 라벨: `Level 2`, `JavaScript`
 
 ## 문제
+
+![image](https://user-images.githubusercontent.com/33214449/130096763-9c8ae0b0-9a19-46a6-b7c0-a9445c70ce7a.png)
 
 - 입력: 문자열(`"013"`은 0, 1, 3 숫자가 적힌 종이 조각이라는 의미)
 - 출력: 종이 조각에 쓰여진 숫자를 조합해 만들 수 있는 **소수**가 몇개인지 리턴 = 숫자
