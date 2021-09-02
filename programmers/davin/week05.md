@@ -102,3 +102,38 @@ var threeSum = function(nums) {
   return result;
 };
 ```
+
+## Palindrome Linked List
+### 문제 풀이
+1. 링크드 리스트의 값들을 저장할 `numbers` 배열과 노드를 담을 `current`를 선언한다.
+2. `while` 문을 돌면서 링크드 리스트의 값들을 `numbers`에 `push` 한다.
+3. `numbers` 배열을 절반씩 자른다. 그리고 두 번째 배열(`rightNumbers`)은 반전시킨다.
+4. `for` 문을 이용하여 `leftNumbers` 배열을 순회한다. 이때 `rightNumbers`와 비교하면서 값이 다를 경우 `false`를 반환한다.
+5. 반복문을 다 돌때까지 `false`를 반환하지 않을 경우 `true`를 반환한다.
+
+### 시간 복잡도
+링크드 리스트를 모두 순회해야 하므로 O(n)
+
+### 제출 코드
+```javascript
+var isPalindrome = function(head) {
+  const numbers = [];
+  let current = head;
+  
+  while(current) {
+    numbers.push(current.val);
+    current = current.next;
+  }
+  
+  const leftNumbers = numbers.slice(0, numbers.length / 2);
+  const rightNumbers = numbers.slice(numbers.length / 2).reverse();
+  
+  for (let i = 0; i < leftNumbers.length; i++) {
+    if (leftNumbers[i] !== rightNumbers[i]) {
+      return false;
+    }
+  }
+  
+  return true;
+};
+```
