@@ -137,3 +137,24 @@ var isPalindrome = function(head) {
   return true;
 };
 ```
+
+## Swap Nodes in Pairs
+### 문제 풀이
+![](../1mg/davin_swap_nodes.jpg)
+
+### 제출 코드
+```javascript
+const swapPairs = (node) => {
+  if (node === null || node.next === null) {
+    return node;
+  }
+
+  const temp = node.next;
+
+  node.next = temp.next;
+  temp.next = node;
+  node.next = swapPairs(node.next);
+
+  return temp;
+};
+```
