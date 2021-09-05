@@ -15,7 +15,7 @@
 
 ✅ 스터디 진행 방식
 
-- 프로그래머스 단계별 문제 풀이 (5주)
+- 자료구조 및 프로그래머스 단계별 문제 풀이 (5주)
 - 주 1회 2명이 2가지 개념에 대한 발표를 하고, 해당하는 개념에 대한 알고리즘 문제 풀이 시간을 가집니다.
 - github을 통한 코드 공유 / 피드백
 - 문제를 풀고 해당 문제에 대해 각자 설명하는 시간을 가집니다.
@@ -132,9 +132,9 @@
   - 발표자 : 박유림
   - 문제:
     - https://leetcode.com/problems/design-circular-deque/
-    - https://www.acmicpc.net/problem/3190 
+    - https://www.acmicpc.net/problem/3190
 - 우선순위 큐
   - 발표자: 우강
   - 문제:
     - https://leetcode.com/problems/merge-k-sorted-lists/
-    - 
+    - https://programmers.co.kr/learn/courses/30/lessons/42626
