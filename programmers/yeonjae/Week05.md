@@ -31,7 +31,9 @@ const twoSum = function (nums, target) {
 ```
 
 - 풀이내용 :
+  - 주어진 nums를 순회하면서, target에서 nuts[i]번째 값을 뺀 차이가 nums에 존재하는지 확인
   - 앞의 브루트포스법보다 시간이 더 오래걸렸음
+    - 반복문을 이중으로 실행하고, slice, includes 메서드를 추가적으로 실행시켜야하기 때문이라고 생각
 
 - 문제 : https://leetcode.com/problems/3sum/submissions/
 
@@ -113,7 +115,10 @@ const isPalindrome = function (head) {
 ```
 
 - 풀이내용 :
-  - 주어진 리스트를 array로 만든 후 pop, shift를 이용해 풀이
+  - 주어진 리스트를 array로 만듦.
+    - ` head.val `을 순회하며 각각의 ` val `값을 ` array `에 ` push `한다.
+    - 다음 node로 넘어가기위해 ` head = head.next `처리를 한다. 
+  - pop, shift로 맨 처음값, 맨 끝값을 비교하며 풀이
 
 ----
 
@@ -153,7 +158,13 @@ const swapPairs = function (head) {
 ```
 
 - 풀이내용:
-  - 추가
+  - value가 null인 노드를 추가한 dummyList를 생성한다.
+  - 이 문제는 두 쌍의 노드의 위치만을 바꾸는 것이 아닌, 두 쌍의 노드 앞, 뒤의 노드또한 포인터를 변경해야한다.
+  - 따라서 node.next(두 쌍의 노드 앞으로 이동 할 큰 값) , node.next.next(두 쌍의 노드 중 작은값이 가리킬 값) 이 존재하면 swap이 가능하다.
+    - `a.next = b.next` : 작은값은 큰 값이 가리키던 값을 가리킨다.
+    - `b.next = a` 큰 값은 작은값을 가리킨다.
+    - `current.next = b` 작은값 직전의 노드는 b를 가리킨다.
+    - `current = current.next.next` 다음 swap을 위해 이동한다.
 
 ```javascript
 /**
