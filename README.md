@@ -107,15 +107,32 @@
 
 ---
 
-# week 05 (2021.09.04)
+# week 05 (2021.09.05)
 
 - 배열
   - 발표자 : 김유진
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/array.md
   - 문제:
     - https://leetcode.com/problems/two-sum/
     - https://leetcode.com/problems/3sum/
 - 링크드 리스트
   - 발표자 : 김연재
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/LinkedList.md
   - 문제:
     - https://leetcode.com/problems/palindrome-linked-list/
     - https://leetcode.com/problems/swap-nodes-in-pairs/
+
+---
+
+# week 06 (2021.09.11)
+
+- 데크
+  - 발표자 : 박유림
+  - 문제:
+    - https://leetcode.com/problems/design-circular-deque/
+    - https://www.acmicpc.net/problem/3190 
+- 우선순위 큐
+  - 발표자: 우강
+  - 문제:
+    - https://leetcode.com/problems/merge-k-sorted-lists/
+    - 
