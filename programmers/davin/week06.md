@@ -90,3 +90,50 @@ MyCircularDeque.prototype.isFull = function() {
   return this.deque.length === this.maxSize;
 };
 ```
+
+## Design Circular Deque
+### 문제 풀이
+1. `values` 배열을 선언한다.
+2. `lists` 반복문을 돌면서 노드의 값들을 모두 꺼내 `values`에 push 한다.
+3. `values`의 length가 0이면 `null`을 반환한다. (노드를 만들 수 없으므로)
+4. `values`를 오름차순으로 정렬한다.
+5. `values`의 첫 번째 요소로 `head`를 만든 후, 노드를 만들기 위해 `temp`를 선언하여 `head`를 할당한다.
+6. `values` 반복문을 돌면서 `head`의 `next`에 새로운 노드들을 이어준다.
+7. `head`를 반환한다.
+
+### 시간 복잡도
+O(n)
+
+### 제출 코드
+```javascript
+var mergeKLists = function(lists) {
+  const values = [];
+  
+  for (let i = 0; i < lists.length; i++) {
+    let currentNode = lists[i];
+    
+    while (currentNode) {
+      if (currentNode) {
+        values.push(currentNode.val);
+        currentNode = currentNode.next;
+      }
+    }
+  }
+  
+  if (values.length === 0) {
+    return null;
+  }
+  
+  values.sort((a, b) => a - b);
+  
+  const head = new ListNode(values[0]);
+  let temp = head;
+  
+  for (let i = 1; i < values.length; i++) {
+    temp.next = new ListNode(values[i]);
+    temp = temp.next;
+  }
+  
+  return head;
+};
+```
