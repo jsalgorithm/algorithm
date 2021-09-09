@@ -91,7 +91,47 @@ MyCircularDeque.prototype.isFull = function() {
 };
 ```
 
-## Design Circular Deque
+##  Palindrome Linked List
+### 문제 풀이
+1. `while` 문을 이용하여 linked list 형태였던 `head`를 deque 형태로 만든다.
+2. deque의 길이만큼 반복문을 돈다.  
+   제일 앞 요소인 `front`와 제일 끝 요소인 `rear`를 비교하여 값이 서로 다를 경우 `false`를 반환한다.
+3. 단순히 `front`와 `rear`를 비교하기만 한다면 `deque`의 길이가 홀수일 때 무조건 `false`를 반환한다.
+   항상 `front`를 먼저 추출하므로 `deque`의 길이가 홀수일 때 `rear`가 `undefined`인 케이스가 생길 수 있다. 따라서 `rear` 값이 없는 경우 `front` 값을 할당해 준다.
+4. `while` 문을 도는 동안 `false`를 반환하지 않았다면 `true`를 반환한다.
+
+### 시간 복잡도
+O(n)
+
+### 제출 코드
+```javascript
+var isPalindrome = function(head) {
+  const deque = [];
+  let current = head;
+  
+  while(current) {
+    deque.push(current.val);
+    current = current.next;
+  }
+  
+  while (deque.length) {
+    let front = deque.shift();
+    let rear = deque.pop();
+    
+    if (front === undefined) {
+      front = rear;
+    }
+    
+    if (front !== rear) {
+      return false;
+    }
+  }
+  
+  return true;
+};
+```
+
+##  Merge k Sorted Lists
 ### 문제 풀이
 1. `values` 배열을 선언한다.
 2. `lists` 반복문을 돌면서 노드의 값들을 모두 꺼내 `values`에 push 한다.
@@ -113,10 +153,8 @@ var mergeKLists = function(lists) {
     let currentNode = lists[i];
     
     while (currentNode) {
-      if (currentNode) {
-        values.push(currentNode.val);
-        currentNode = currentNode.next;
-      }
+      values.push(currentNode.val);
+      currentNode = currentNode.next;
     }
   }
   
