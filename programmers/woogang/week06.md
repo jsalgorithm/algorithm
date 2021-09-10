@@ -68,5 +68,19 @@ ListNode.prototype.add = (node, val) => {
 # The K Weakest Rows in a Matrix
 
 ## 풀이방법
+1. 배열을[index, 군인의 합계]형식으로 바꿔준다.
+2. 배열 정렬 : 군인의 합계가 같으면 인덱스로 정렬해준다.
+3. 정렬된 결과의 행 인덱스를 가져온다
+4. K수에 따라 결과를 slice해준다.
 
 ## 코드
+```javascript
+var kWeakestRows = function (mat, k) {
+  return mat
+    .map((e, i) => [i, e.reduce((acc, cur) => acc + cur, 0)])	
+    .sort((a, b) => (a[1] == b[1] ? a[0] - b[0] : a[1] - b[1]))	
+    .map((x) => x[0])	
+    .slice(0, k);
+	
+};
+```
