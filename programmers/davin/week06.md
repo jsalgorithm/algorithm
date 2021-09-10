@@ -175,3 +175,89 @@ var mergeKLists = function(lists) {
   return head;
 };
 ```
+
+## The K Weakest Rows in a Matrix
+### 문제 풀이 01
+1. `mat` 배열을 순회하여 아래와 같은 구조의 새 배열을 만든다.  
+   `count`는 각 배열에서 군인들의 수를 나타내고, `index`는 배열에서의 인덱스를 의미한다.
+```javascript
+[
+  { count: 2, index: 0 },
+  { count: 0, index: 1 },
+  { count: 4, index: 2 },
+  ...
+]
+```
+2. `sort` 메서드를 이용하여 `count`를 기준으로 정렬하고, `slice` 메서드를 사용하여 `k` 번째 만큼 잘라낸다.
+3. `map` 메서드를 이용하여 `index`만 추출한 배열을 반환한다.
+
+### 시간 복잡도 01
+O(n log n)
+
+### 제출 코드 01
+```javascript
+var kWeakestRows = function(mat, k) {
+  const items = mat.map((people, index) => {
+    return { count: people.filter((person) => person > 0).length, index };
+  });
+  const result = items.sort((a, b) => a.count - b.count).slice(0, k);
+  return result.map((item) => item.index);
+};
+```
+
+### 문제 풀이 02
+1. 배열로 우선순위 큐를 구현한다.  
+   `add`를 할 때마다 값과 우선순위를 인자로 받고 새 노드를 생성한다. ``items` 배열에 추가한 후, 우선순위를 기준으로 정렬한다.  
+   `remove`를 할 때마다 `items`의 맨 첫 번째 요소를 반환한다.
+2. `mat` 배열을 순회하면서 `add`를 실행한다.  
+   이때, 최종적으로 인덱스를 리턴해야 하므로 `value`는 인덱스, 군인 수를 기준으로 우선순위를 판별해야 하기 때문에 `priority`는 군인 수로 지정한다.
+3. 순회를 마치면 군인 수가 적은 노드부터 오름차순으로 배열이 정렬된다.
+4. `for` 문으로 `k` 만큼 반복문을 돈다. 이때, `remove` 메서드를 실행시켜 `items`의 우선순위가 높은 노드를 차례로 가져온다.
+5. `result` 배열에 해당 노드의 `value`(인덱스)를 `push` 한다.
+6. `result` 배열을 반환한다.
+
+### 시간 복잡도 02
+O(n log n)
+
+### 제출 코드 02
+```javascript
+class Node {
+  constructor(value, priority) {
+    this.value = value;
+    this.priority = priority;
+  }
+}
+
+class PriorityQueue {
+  constructor() {
+    this.items = [];
+  }
+
+  add = (value, priority) => {
+    const newNode = new Node(value, priority);
+    
+    this.items.push(newNode);
+    this.items.sort((a, b) => a.priority - b.priority);
+  };
+
+  remove = () => {
+    return this.items.shift();
+  };
+}
+
+var kWeakestRows = function(mat, k) {
+  const result = [];
+  const priorityQueue = new PriorityQueue();
+  
+  mat.forEach((people, index) => {
+    const count = people.filter((person) => person > 0).length;
+    priorityQueue.add(index, count);
+  });
+  
+  for (let i = 0; i < k; i++) {
+    result.push(priorityQueue.remove().value);
+  }
+
+  return result;
+};
+```
