@@ -138,3 +138,13 @@
   - 문제:
     - https://leetcode.com/problems/merge-k-sorted-lists/
     - https://programmers.co.kr/learn/courses/30/lessons/42626
+
+---
+
+# week 07 (2021.09.18)
+
+- BFS / DFS
+  - 발표자 : 정다빈
+  - 문제:
+    - https://leetcode.com/problems/merge-two-binary-trees/
+    - https://leetcode.com/problems/invert-binary-tree/
