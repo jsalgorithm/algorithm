@@ -118,8 +118,8 @@ var isPalindrome = function(head) {
     let front = deque.shift();
     let rear = deque.pop();
     
-    if (front === undefined) {
-      front = rear;
+    if (rear === undefined) {
+      rear = front;
     }
     
     if (front !== rear) {
