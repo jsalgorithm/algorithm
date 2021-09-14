@@ -148,3 +148,10 @@
   - 문제:
     - https://leetcode.com/problems/merge-two-binary-trees/
     - https://leetcode.com/problems/invert-binary-tree/
+
+
+- 백트래킹
+  - 발표자 : 김유진
+  - 문제:
+    - https://leetcode.com/explore/challenge/card/september-leetcoding-challenge-2021/637/week-2-september-8th-september-14th/3973/
+    - https://leetcode.com/problems/sum-of-all-subset-xor-totals/
