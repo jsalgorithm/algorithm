@@ -28,3 +28,31 @@ var mergeTrees = function(root1, root2) {
   return root1;
 };
 ```
+
+## Merge Two Binary Trees
+### 문제 풀이
+1. `root.left`와 `root.right`를 바꾼다.
+2. `root`의 모든 자식 요소를 반전시켜야 하기 때문에, 재귀를 이용한다. 이때, `root.left`와 `root.right`를 인자로 넣는다.
+3. `root.left`를 검사하여 없다면 `null`을 반환하고, 있다면 처음과 같이 `left`와 `right`를 서로 바꾼다.
+
+### 시간 복잡도
+O(n)
+
+### 제출 코드
+```javascript
+var invertTree = function(root) {
+  if (!root) {
+    return null;
+  }
+
+  const left = root.left;
+  
+  root.left = root.right;
+  root.right = left;
+  
+  invertTree(root.left);
+  invertTree(root.right);
+
+  return root;
+};
+```
