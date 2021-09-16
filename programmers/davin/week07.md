@@ -29,7 +29,7 @@ var mergeTrees = function(root1, root2) {
 };
 ```
 
-## Merge Two Binary Trees
+## Invert Binary Tree
 ### 문제 풀이
 1. `root.left`와 `root.right`를 바꾼다.
 2. `root`의 모든 자식 요소를 반전시켜야 하기 때문에, 재귀를 이용한다. 이때, `root.left`와 `root.right`를 인자로 넣는다.
@@ -54,5 +54,50 @@ var invertTree = function(root) {
   invertTree(root.right);
 
   return root;
+};
+```
+
+## Maximum Number of Balloons
+### 문제 풀이
+1. 인자로 받은 `text`를 배열로 변환한 `array`를 선언한다.  
+   최종 카운트를 반환할 `result`도 선언한다.
+2. `array`를 이용하여 `while` 문을 돈다.  
+   `while` 문 내부에서 문자열 `temp`를 선언한다.
+3. `balloon`을 이용하여 `for` 문을 돈다.  
+   알파벳을 하나씩 짚어 `array`에 해당 알파벳이 있을 경우 `temp`에 더한다.  
+   그리고 `array`에서 해당 알파벳을 삭제한다. (중복 사용을 방지하기 위함)
+4. `temp`와 `balloon`이 같을 경우 `result`를 1씩 더해주고, `temp`를 초기화한다.
+5. 최종적으로 `result`를 반환한다.
+
+### 시간 복잡도
+O(n2)
+
+### 제출 코드
+```javascript
+var maxNumberOfBalloons = function(text) {
+  const BALLOON = 'balloon';
+  const array = text.split('');
+  let result = 0;
+
+  while(array.length) {
+    let temp = '';
+    
+    for (let j = 0; j < BALLOON.length; j++) {
+      const index = array.findIndex((s) => s === BALLOON[j]);
+
+      if (index >= 0) {
+        temp += array[index];
+      }
+      
+      array.splice(index, 1);
+    }
+    
+    if (temp === BALLOON) {
+      result += 1;
+      temp = '';
+    }
+  }
+  
+  return result;
 };
 ```
