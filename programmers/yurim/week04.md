@@ -160,56 +160,11 @@ var maxDepth = function (root) {
 - [Leetcode Discussion](https://leetcode.com/problems/maximum-depth-of-binary-tree/discuss/279066/Two-easy-solution-using-JavaScript)
 - [[LeetCode] Maximum Depth of Binary Tree (JS)](https://velog.io/@gyu716625/LeetCode-Maximum-Depth-of-Binary-Tree-JS#%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95)
 
-# Last Stone Weight
+# Diameter of Binary Tree
 
-- 문제 분류: `이진트리`
-- 문제 출처: [Leetcode - 1046. Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)
+- 문제 분류: `힙`
+- 문제 출처: [Leetcode - 543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
 - 라벨: `Easy`, `JavaScript`
-
-## 문제
-
-- `stones` 배열의 원소 각각은 돌의 무게를 의미한다.
-- 가장 무거운 2개의 돌을 찾아서(단 두 개의 돌을 `x`, `y`라고 가정할 때 `x <= y`)
-  - `x==y`일 경우, 배열에서 두 개의 돌 모두 삭제한다.
-  - `x!=y`일 경우, `x`인 돌은 배열에서 삭제하고 `y`는 `y-x` 무게로 바꾼다.
-- 위 과정을 배열에 돌이 1개 남을 때까지 계속한다.
-- 마지막에 남은 돌의 무게를 리턴하고, 만약 남은 돌이 없다면 `0`을 리턴하도록 하자.
-
-## 풀이 1
-
-- 이진 트리 개념을 적용하지 못했다.
-
-```js
-var lastStoneWeight = function (stones) {
-  let size = stones.length;
-
-  while (size >= 2) {
-    stones.sort((a, b) => {
-      return a - b;
-    });
-
-    x = stones.pop();
-    y = stones.pop();
-
-    if (x == y) {
-      size -= 2;
-    } else {
-      size -= 1;
-      stones.unshift(x - y);
-    }
-  }
-
-  return stones.length === 0 ? 0 : stones[0];
-};
-```
-
-- 시간 복잡도: O(n^2) 이상
-
-![image](https://user-images.githubusercontent.com/33214449/131167403-02b7b510-5dcc-4490-bbe9-5c858bda5e22.png)
-
-## Ref
-
-- [Leetcode Discussion](https://leetcode.com/problems/last-stone-weight/discuss/594316/Javascript-99-time)
 
 # Maximum Product of Two Elements in an Array
 
@@ -296,8 +251,53 @@ var maxProduct = function (nums) {
 
 - [자바스크립트로 힙 (Heap) 구현하기](https://velog.io/@cada/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%A1%9C-%ED%9E%99-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0#%EC%82%BD%EC%9E%85-%EB%A9%94%EC%86%8C%EB%93%9C-%EA%B5%AC%ED%98%84) 최대 히프 삽입 코드 참고
 
-# Diameter of Binary Tree
+# Last Stone Weight
 
 - 문제 분류: `힙`
-- 문제 출처: [Leetcode - 543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
+- 문제 출처: [Leetcode - 1046. Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)
 - 라벨: `Easy`, `JavaScript`
+
+## 문제
+
+- `stones` 배열의 원소 각각은 돌의 무게를 의미한다.
+- 가장 무거운 2개의 돌을 찾아서(단 두 개의 돌을 `x`, `y`라고 가정할 때 `x <= y`)
+  - `x==y`일 경우, 배열에서 두 개의 돌 모두 삭제한다.
+  - `x!=y`일 경우, `x`인 돌은 배열에서 삭제하고 `y`는 `y-x` 무게로 바꾼다.
+- 위 과정을 배열에 돌이 1개 남을 때까지 계속한다.
+- 마지막에 남은 돌의 무게를 리턴하고, 만약 남은 돌이 없다면 `0`을 리턴하도록 하자.
+
+## 풀이 1
+
+- 이진 트리 개념을 적용하지 못했다.
+
+```js
+var lastStoneWeight = function (stones) {
+  let size = stones.length;
+
+  while (size >= 2) {
+    stones.sort((a, b) => {
+      return a - b;
+    });
+
+    x = stones.pop();
+    y = stones.pop();
+
+    if (x == y) {
+      size -= 2;
+    } else {
+      size -= 1;
+      stones.unshift(x - y);
+    }
+  }
+
+  return stones.length === 0 ? 0 : stones[0];
+};
+```
+
+- 시간 복잡도: O(n^2) 이상
+
+![image](https://user-images.githubusercontent.com/33214449/131167403-02b7b510-5dcc-4490-bbe9-5c858bda5e22.png)
+
+## Ref
+
+- [Leetcode Discussion](https://leetcode.com/problems/last-stone-weight/discuss/594316/Javascript-99-time)
