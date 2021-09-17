@@ -101,3 +101,46 @@ var maxNumberOfBalloons = function(text) {
   return result;
 };
 ```
+
+## Sum of All Subset XOR Totals
+### 문제 풀이
+1. 인자로 받은 `nums` 배열을 이용하여 (모든 경우의) 이중 배열을 만든다.  
+```
+nums = [1, 3]
+subsets = [[1], [3], [1, 3]]
+```
+2. 이중 배열 `subsets`을 `for` 문을 이용하여 순회한다.  
+   `i` 번째 요소의 length가 1일 경우 그 값을 `sum`에 그대로 더한다.  
+   `i` 번째 요소의 length가 1 이상일 경우 `reduce`를 이용하여 XOR 값을 구한다. 그리고 그 값을 `sum`에 더한다.
+3. `sum`을 반환한다.
+
+### 시간 복잡도
+O(n log n)? O(n2)?
+
+### 제출 코드
+```javascript
+var subsetXORSum = function(nums) {
+  const subsets = [[]];
+  let sum = 0;
+
+  for (const num of nums) {
+    const last = subsets.length - 1;
+
+    for(let i = 0; i <= last; i++) {
+      subsets.push([...subsets[i], num]);
+    }
+  }
+
+  for (let i = 0; i < subsets.length; i++){
+    if (subsets[i].length === 1) {
+      sum += parseInt(subsets[i]);
+    }
+    
+    if (subsets[i].length > 1) {
+      sum += parseInt(subsets[i].reduce((acc,cur) => acc ^ cur));   
+    }
+  }
+
+  return sum
+};
+```
