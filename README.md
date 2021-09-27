@@ -143,15 +143,34 @@
 
 # week 07 (2021.09.18)
 
+`추석 연휴로 인해 21.09.26 에 진행하였음.`
+
 - BFS / DFS
+
   - 발표자 : 정다빈
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/dfs_bfs.md
   - 문제:
     - https://leetcode.com/problems/merge-two-binary-trees/
     - https://leetcode.com/problems/invert-binary-tree/
 
-
 - 백트래킹
   - 발표자 : 김유진
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/backtracking.md
   - 문제:
     - https://leetcode.com/explore/challenge/card/september-leetcoding-challenge-2021/637/week-2-september-8th-september-14th/3973/
     - https://leetcode.com/problems/sum-of-all-subset-xor-totals/
+
+# week 08 (2021.10.03)
+
+- 최단경로
+
+  - 발표자 : 김연재
+  - 문제 :
+    - https://leetcode.com/problems/network-delay-time/
+    - https://leetcode.com/problems/cheapest-flights-within-k-stops/
+
+- 이진탐색트리
+  - 발표자 : 안솔
+  - 문제 :
+    - https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
+    - https://leetcode.com/problems/minimum-distance-between-bst-nodes/
