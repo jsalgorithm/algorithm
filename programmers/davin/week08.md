@@ -42,3 +42,38 @@ var networkDelayTime = function (times, N, K) {
   return result === Infinity ? -1 : result;
 };
 ```
+
+## Cheapest Flights Within K Stops
+### 문제 풀이
+1. 노드의 수 + 1 만큼 배열을 만든 후, 배열을 `Infinity`로 채운다. 해당 배열의 `src` 번째 요소에 0을 할당한다. (시작 지점에 0 할당)
+2. k 만큼 노드를 거쳐갈 수 있으므로 k를 이용하여 반복문을 돈다.
+3. `flights`를 이용하여 반복문을 돈다. `flights`의 j 번째 배열을 이용하여 이동 비용을 계산하고, 이미 계산된 값보다 더 작은 경우 재할당한다.
+4. `dst` 번째로 이동이 가능하다면 array의 `dst` 번째 요소(비용)를 반환하고, 이동이 불가능하다면 -1을 반환한다.
+
+### 시간 복잡도
+O(n log n)
+
+### 제출 코드
+```javascript
+var findCheapestPrice = function(n, flights, src, dst, k) {
+  let array = new Array(n + 1).fill(Infinity);
+  array[src] = 0;
+  
+  for(let i = 0; i < k + 1; i++){
+    const copy = [...array];
+
+    for(let j = 0; j < flights.length; j++){
+      const [from, to, price] = flights[j];
+      copy[to] = Math.min(copy[to], array[from] + price);
+    }
+
+    array = [...copy];
+  }
+  
+  return array[dst] === Infinity ? -1 : array[dst];
+};
+```
+
+__참고__
+[알고리즘 - 다익스트라 알고리즘(Dijkstra's algorithm) : 모든 정점까지의 최단 경로 구하기
+](https://chanhuiseok.github.io/posts/algo-47/)
