@@ -77,3 +77,46 @@ var findCheapestPrice = function(n, flights, src, dst, k) {
 __참고__
 [알고리즘 - 다익스트라 알고리즘(Dijkstra's algorithm) : 모든 정점까지의 최단 경로 구하기
 ](https://chanhuiseok.github.io/posts/algo-47/)
+
+## Two Sum IV - Input is a BST
+### 문제 풀이
+1. `set`과 `root`를 가진 `stack`을 선언하고 `stack`을 이용하여 반복문을 실행한다.
+2. `set`에 `k` - `node.val`이 없다면 `set`에 `node.val`을 추가한다.
+3. 반복문 초기에 노드를 `pop` 했으므로 `stack`이 비워진 상태에서, `node.left`와 `node.right`를 `push` 한다.
+4. `stack`을 돌면서 `set`에 `k` - `node.val`이 있다면 true를 반환한다.
+5. 반복문을 모두 돌았음에도 true를 반환하지 못했다면 false를 반환한다.
+
+### 시간 복잡도
+O(n)
+
+### 제출 코드
+```javascript
+var findTarget = function(root, k) {
+  if (!root) {
+    return false;
+  }
+
+  const set = new Set();
+  const stack = [root];
+
+  while (stack.length) {
+    const node = stack.pop();
+
+    if (set.has(k - node.val)) {
+      return true;
+    }
+
+    set.add(node.val);
+
+    if (node.right) {
+      stack.push(node.right);
+    }
+    
+    if (node.left) {
+      stack.push(node.left);
+    }
+  }
+
+  return false;
+};
+```
