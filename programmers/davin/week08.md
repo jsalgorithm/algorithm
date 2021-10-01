@@ -120,3 +120,46 @@ var findTarget = function(root, k) {
   return false;
 };
 ```
+
+## Minimum Distance Between BST Nodes
+### 문제 풀이
+1. 재귀를 이용하여 모든 노드의 `val`을 꺼내 배열 형태로 만든 후 오름차순으로 정렬한다.
+2. `result`에 `Infinity`를 할당한 후, 배열을 이용하여 반복문을 돈다.
+3. `i` 번째와 `i + 1`번째의 차이 값을 구한 후 더 작은 숫자를 `result`에 할당한다.
+4. 반복문을 종료하고 `result`를 반환한다.
+
+### 시간 복잡도
+O(n)
+
+### 제출 코드
+```javascript
+function getNodeValues(node, array) {
+  if (!node) {
+    return;
+  }
+
+  array.push(node.val);
+  
+  getNodeValues(node.left, array);
+  getNodeValues(node.right, array);
+  
+  return array;
+}
+
+var minDiffInBST = function(root) {
+  const array = getNodeValues(root, []).sort((a, b) => a - b);
+  let result = Infinity;
+  
+  for (let i = 0; i < array.length - 1; i++) {
+    let distance = array[i] - array[i + 1];
+    
+    if (distance < 0) {
+      distance *= -1;
+    }
+
+    result = Math.min(result, distance);
+  }
+  
+  return result;
+};
+```
