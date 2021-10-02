@@ -36,21 +36,21 @@
 1. 우선 삽입하고자 하는 값으로 탐색을 수행한다.
 2. 탐색 후 일치하는 노드가 없으면 탐색을 실패한 위치가 곧 노드를 삽입할 위치가 된다.
 
-![이진탐색트리 삽입](https://images.app.goo.gl/d1orGVuk5CsvJgmu9)
+![이진탐색트리 삽입](https://upload.wikimedia.org/wikipedia/commons/8/83/Binary-search-tree-insertion-animation.gif)
 
 ### 삭제
 
-- 자식 노드가 없는 경우
+- 자식 노드가 없는 경우  
   해당 노드를 바로 삭제한다.
 
-~[이진탐색트리 삭제 1](https://i.giphy.com/media/ZcLLXw3CXlqGrFVtRi/giphy.gif)
+![이진탐색트리 삭제 1](https://i.giphy.com/media/ZcLLXw3CXlqGrFVtRi/giphy.gif)
 
-- 자식 노드가 1개인 경우
+- 자식 노드가 1개인 경우  
   해당 노드를 삭제하고 그 위치에 자식 노드를 가져온다.
 
 ![이진탐색트리 삭제 2](https://i.giphy.com/media/YrZ18grMiPQ6J2QWhP/giphy.gif)
 
-- 자식 노드가 2개인 경우
+- 자식 노드가 2개인 경우  
   해당 노드를 삭제하고 그 위치에 그 직전 값인 노드(=왼쪽 서브트리에서 가장 큰 값을 갖는 노드) 또는 직후 값인 노드(=오른쪽 서브트리에서 가장 작은 값을 갖는 노드)를 가져온다.
 
 ![이진탐색트리 삭제 3](https://i.giphy.com/media/S78Dap8pBddwvipsNi/giphy.gif)
@@ -139,4 +139,4 @@ removeNode(node, key){
 }
 ```
 
-> ![코드 설명 자세히 보기](https://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/)
+[코드 설명 자세히 보기](https://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/)
