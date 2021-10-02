@@ -162,3 +162,47 @@
       - 최종적으로 minCount에는 key 중 최소값이 할당된다.
     - minCount를 리턴한다.
     - 백트래킹적으로는 못풀었다..
+
+- 문제: https://leetcode.com/problems/sum-of-all-subset-xor-totals/
+
+- 코드:
+
+  ```javascript
+  /**
+   * @param {number[]} nums
+   * @return {number}
+   */
+  const subsetXORSum = function (nums) {
+  	return helper(nums, 0, 0);
+  };
+  
+  const helper = function (nums, index, currentXor) {
+  	if (index === nums.length) return currentXor;
+  
+  	let withElement = helper(nums, index + 1, currentXor ^ nums[index]);
+  	let withoutElement = helper(nums, index + 1, currentXor);
+  
+  	return withElement + withoutElement;
+  };
+  ```
+
+  ![image](https://assets.leetcode.com/users/images/a3577006-9ec5-4d9e-9731-749ab42ba81d_1622422572.769027.png)
+
+- **^ ( 비트 단위 XOR ) :** 두개의 비트가 서로 다를 경우만 1반환
+
+- 1011 ^ 1101 = 0110
+
+- [5,1,6]으로 만들 수 있는 모든 조합을 만들어본다.
+
+  - 인덱스별로, 해당 인덱스를 포함하는 경우/포함하지 않는 경우로 나누어 생각한다.
+  - 결국 리프노드들은 주어진 배열로 만들 수 있는 모든 경우의 수가 나타나게된다.
+
+- ` Helper 함수 ` 를 통해 이 연산을 진행한다.
+
+  - ` withElement ` 변수는 해당 인덱스의 값을 포함하여 연산
+    - 인덱스의 길이가 주어진 배열의 길이와 같아졌을 때, 마지막 비트연산값을 ` withElement ` 에 반환한다
+  - ` withoutElement ` 변수는 해당 인덱스의 값을 포함하지 않고 연산
+    - 인덱스의 길이가 주어진 배열의 길이와 같아졌을 때, 마지막 비트연산값을 ` withoutElement `에 반환한다
+  - 모든 재귀를 끝마친 결과, ` withELement + withoutElement `의 값을 반환한다.
+
+  
