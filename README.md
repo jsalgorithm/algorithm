@@ -160,17 +160,36 @@
     - https://leetcode.com/explore/challenge/card/september-leetcoding-challenge-2021/637/week-2-september-8th-september-14th/3973/
     - https://leetcode.com/problems/sum-of-all-subset-xor-totals/
 
+---
+
 # week 08 (2021.10.03)
 
 - 최단경로
 
   - 발표자 : 김연재
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/dijkstra.md
   - 문제 :
     - https://leetcode.com/problems/network-delay-time/
     - https://leetcode.com/problems/cheapest-flights-within-k-stops/
 
 - 이진탐색트리
   - 발표자 : 안솔
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/binarySearchTree.md
   - 문제 :
     - https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
     - https://leetcode.com/problems/minimum-distance-between-bst-nodes/
+
+---
+
+# week 09 (2021.10.10)
+
+- 슬라이딩 윈도우
+  - 발표자 : 박유림
+  - 문제:
+    - https://leetcode.com/problems/longest-repeating-character-replacement/
+    - https://leetcode.com/problems/contains-duplicate-ii/
+- 비트조작
+  - 발표자 : 우강
+  - 문제 :
+    - https://leetcode.com/problems/single-number/
+    - https://leetcode.com/problems/hamming-distance/
