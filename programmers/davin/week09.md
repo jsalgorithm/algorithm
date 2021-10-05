@@ -37,3 +37,32 @@ const characterReplacement = (s, k) => {
   return right - left;
 };
 ```
+
+## Contains Duplicate II
+### 문제 풀이
+1. 인덱스를 저장하기 위한 `obj`를 선언한다.
+2. `nums`의 길이만큼 반복문을 돈다.
+3. `obj`에 인덱스가 저장되어 있지 않다면(처음으로 등장한 숫자라면) 연산할 값이 없으므로 `obj`에 인덱스를 저장한다.
+4. `obj`에 인덱스가 저장되어 있다면(중복으로 등장한 숫자라면) 저장된 인덱스를 가져와 절댓값을 구한다.
+5. 이 절댓값이 `k`보다 작거나 같다면 true를 반환한다. 만약 이 절댓값이 `k`보다 크다면 `obj`의 인덱스를 업데이트한다.  
+   `obj`의 인덱스를 업데이트하는 이유 연산된 절댓값이 `k`보다 작거나 같으려면 인덱스 `i`와 `j`의 차이가 커지면 안 된다. 따라서 절댓값이 조건에 충족하지 못한다면 `obj`에 저장된 인덱스의 크기를 더 큰 값으로 업데이트해준다.
+6. 반복문을 모두 돌았음에도 true를 반환하지 못했다면 false를 반환한다.
+
+### 시간 복잡도
+O(n)
+
+### 제출 코드
+```javascript
+var containsNearbyDuplicate = function(nums, k) {
+  const obj = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] in obj && Math.abs(i - obj[nums[i]]) <= k) {
+      return true;
+    }
+    obj[nums[i]] = i;
+  }
+
+  return false;
+};
+```
