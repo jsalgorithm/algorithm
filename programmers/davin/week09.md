@@ -66,3 +66,41 @@ var containsNearbyDuplicate = function(nums, k) {
   return false;
 };
 ```
+
+## Single Number
+### 문제 풀이 01
+1. `nums`를 순회하면서 각 숫자의 개수를 key - value 형태로 저장한다.
+2. 개수가 홀수인 key를 반환한다.
+
+### 시간 복잡도 01
+O(n)
+
+### 제출 코드 01
+```javascript
+var singleNumber = function(nums) {
+  const hash = nums.reduce((acc, cur) => {
+    acc[cur] ? acc[cur]++ : acc[cur] = 1;
+    return acc;
+  }, {});
+  return Object.keys(hash).find((key) => hash[key] % 2);
+};
+```
+
+### 문제 풀이 02
+1. `nums`를 순회하면서 XOR 연산을 한다.  
+   같은 비트를 가졌다면 XOR 연산을 했을 때 결괏값이 0이 나온다. 0과 0이 아닌 다른 숫자를 XOR 연산한다면 결괏값은 0이 아닌 다른 숫자가 나온다.
+  ```
+  2 ^ 2 = 0
+  0 ^ 5 = 5
+  ```
+2. 최종 값을 반환한다.
+
+### 시간 복잡도 02
+O(n)
+
+### 제출 코드 02
+```javascript
+var singleNumber = function(nums) {
+  return nums.reduce((acc, cur) => acc ^ cur);
+};
+```
