@@ -104,3 +104,80 @@ var singleNumber = function(nums) {
   return nums.reduce((acc, cur) => acc ^ cur);
 };
 ```
+
+## Hamming Distance
+### 문제 풀이 01
+1. `x`와 `y`를 이진수로 변환 후 배열로 만든다.
+```
+1 = [1]
+4 = [1, 0, 0]
+```
+2. 각 배열의 길이가 다르다면 반복문을 이용해 맨 앞에 0을 삽입한다.
+```
+1 = [0, 0, 1]
+4 = [1, 0, 0]
+```
+3. 두 배열을 비교하며 반복문을 돈다. `i` 번째 값이 다를 경우 `count`를 1씩 올린다.
+
+### 시간 복잡도 01
+O(n)
+
+### 제출 코드 01
+```javascript
+var hammingDistance = function(x, y) {
+  const xArray = x.toString(2).split('').map(Number);
+  const yArray = y.toString(2).split('').map(Number);
+  
+  const minLength = Math.min(xArray.length, yArray.length);
+  const maxLength = Math.max(xArray.length, yArray.length);
+  
+  let count = 0;
+  
+  for (let i = minLength; i < maxLength; i++) {
+    if (xArray.length < maxLength) {
+      xArray.unshift(0);
+    }
+    
+    if (yArray.length < maxLength) {
+      yArray.unshift(0);
+    }
+  }
+  
+  for (let i = 0; i < maxLength; i++) {
+    if (xArray[i] !== yArray[i]) {
+      count += 1;
+    }
+  }
+  
+  return count;
+};
+```
+
+### 문제 풀이 02
+1. `x`와 `y`를 이용하여 XOR 연산을 한다.  
+XOR 연산을 하는 이유는 두 이진수를 비교하여 같은 것은 0, 다른 것은 1로 표시하기 위해서다.
+```
+1 = 001
+4 = 100
+---------
+    101
+```
+2. 연산한 값을 이진수로 변환한다.
+```
+101
+```
+3. 0은 비트가 같다는 의미이므로 `replace`를 이용하여 제거한다.
+```
+11
+```
+4. 해당 문자열의 길이를 반환한다.
+
+### 시간 복잡도 02
+O(n)
+
+### 제출 코드 02
+```javascript
+var hammingDistance = function(x, y) {
+  return (x ^ y).toString(2).replace(/0/g, '').length;
+};
+```
