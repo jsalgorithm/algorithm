@@ -47,7 +47,6 @@ let maxSumOfSubarray = function (arr, k) {
   let window_start = 0;
 
   for (let window_end = 0; window_end < arrSize; window_end++) {
-    console.log('for!');
     window_sum += arr[window_end];
 
     if (window_end >= k - 1) {
