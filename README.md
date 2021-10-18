@@ -181,7 +181,7 @@
 
 ---
 
-# week 09 (2021.10.10)
+# week 09 (2021.10.17)
 
 - 슬라이딩 윈도우
   - 발표자 : 박유림
@@ -193,3 +193,13 @@
   - 문제 :
     - https://leetcode.com/problems/single-number/
     - https://leetcode.com/problems/hamming-distance/
+
+---
+
+# week 10 (2021.10.23)
+
+- 분할 정복
+  - 발표자 : 정다빈
+  - 문제:
+    - https://leetcode.com/problems/contains-duplicate/
+    - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
