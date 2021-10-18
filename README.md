@@ -184,12 +184,16 @@
 # week 09 (2021.10.17)
 
 - 슬라이딩 윈도우
+
   - 발표자 : 박유림
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/slidingWindow.md
   - 문제:
     - https://leetcode.com/problems/longest-repeating-character-replacement/
     - https://leetcode.com/problems/contains-duplicate-ii/
+
 - 비트조작
   - 발표자 : 우강
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/bit_manipulation.md
   - 문제 :
     - https://leetcode.com/problems/single-number/
     - https://leetcode.com/problems/hamming-distance/
@@ -199,7 +203,14 @@
 # week 10 (2021.10.23)
 
 - 분할 정복
+
   - 발표자 : 정다빈
   - 문제:
     - https://leetcode.com/problems/contains-duplicate/
     - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+- 그리디 알고리즘
+  - 발표자 : 김유진
+  - 문제:
+    - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+    - https://leetcode.com/problems/assign-cookies/
