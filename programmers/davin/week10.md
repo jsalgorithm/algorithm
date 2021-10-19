@@ -64,3 +64,29 @@ var containsDuplicate = function(nums) {
 
 ### 결과 02
 ![](../1mg/davin_contains_duplicate_02.png)
+
+## Best Time to Buy and Sell Stock
+### 문제 풀이
+1. 결과값을 저장할 `result`와 배열의 최솟값을 저장할 `min`을 선언한다.
+2. `prices`를 순회한다.
+3. `min`은 저장된 값과 현재의 값을 비교하면서 더 작은 숫자로 업데이트한다.
+4. `result`는 저장된 값과 `현재값 - 최솟값`을 비교하여 더 큰 숫자로 업데이트한다.
+5. `result`를 반환한다.
+
+### 시간 복잡도
+O(n)
+
+### 제출 코드
+```javascript
+var maxProfit = function(prices) {
+  let result = 0;
+  let min = prices[0];
+
+  for(let i = 1; i < prices.length; i++) {
+    min = Math.min(prices[i], min);
+    result = Math.max(result, prices[i] - min);
+  }
+  
+  return result;
+};
+```
