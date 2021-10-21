@@ -90,3 +90,32 @@ var maxProfit = function(prices) {
   return result;
 };
 ```
+
+## Best Time to Buy and Sell Stock II
+### 문제 풀이
+1. 결괏값을 저장할 `result`를 선언한다.
+2. `prices`를 순회하며 현재 가격(i)과 다음 날의 가격(i + 1)의 차익을 구한다.
+3. 차익이 0보다 크다면 `result`에 더한다.
+4. `result`를 반환한다.
+
+### 시간 복잡도
+O(n)
+
+### 제출 코드
+```javascript
+var maxProfit = function(prices) {
+  let result = 0;
+  
+  for (let i = 0; i < prices.length - 1; i++) {
+    const currentPrice = prices[i];
+    const nextPrice = prices[i + 1];
+    const price = nextPrice - currentPrice;
+
+    if (price > 0) {
+      result += price;
+    }
+  }
+  
+  return result;
+};
+```
