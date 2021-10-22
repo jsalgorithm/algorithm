@@ -119,3 +119,37 @@ var maxProfit = function(prices) {
   return result;
 };
 ```
+
+## Assign Cookies
+### 문제 풀이
+1. `g`를 정렬한 `greedies`와 `index`, `result`를 선언한다.
+2. `s`를 정렬한 후 순회한다.
+3. 정렬한 `greedies`를 복사하여 `copyGreedies`를 선언하고, 복사한 `copyGreedies`에서 쿠키의 `size`보다 작은 `greedy`를 찾는다.
+4. 해당하는 `greedy`가 있다면 `indext`와 `result`에 각각 1을 더한다.
+5. 그다음 반복문에서는 충족한 `greedy`를 제외한 후(`slice`를 이용) 다시 계산한다.
+
+### 시간 복잡도
+O(n2)
+
+### 제출 코드
+```javascript
+var findContentChildren = function(g, s) {
+  let greedies = g.slice().sort((a, b) => a - b);
+  let index = 0;
+  let result = 0;
+  
+  s.slice()
+    .sort((a, b) => a - b)
+    .forEach((size) => {
+      const copyGreedies = greedies.slice(index);
+      const greedy = copyGreedies.find((gr) => (gr <= size));
+
+      if (greedy) {
+        index += 1;
+        result += 1;
+      }                              
+    });
+  
+  return result;
+};
+```
