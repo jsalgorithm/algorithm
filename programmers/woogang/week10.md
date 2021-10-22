@@ -26,12 +26,12 @@ const containsDuplicate = (nums) => {
 ```javascript
 var maxProfit = function(prices) {
     
-    let maxProfit = 0;
-    let min = prices[0];
+    let maxProfit = 0; //1
+    let min = prices[0]; //2
     
-    for(let i = 1; i < prices.length; i++) {
+    for(let i = 1; i < prices.length; i++) { //3
         min = Math.min(prices[i], min);
-        maxProfit = Math.max(maxProfit, prices[i] - min);
+        maxProfit = Math.max(maxProfit, prices[i] - min); //4
     }
     return maxProfit;
 };
@@ -48,4 +48,4 @@ var maxProfit = function(prices) {
 
     비교한 값중에 작은 값을 min의 새 값으로 설정해주기(==Math.min()이용)
 
-3.maxPofit의 이전값 또는 현재 가격에서 min을 뺀 최대한 이익도 업데이트해준다.
+4.maxPofit의 이전값 또는 현재 가격에서 min을 뺀 최대한 이익도 업데이트해준다.
