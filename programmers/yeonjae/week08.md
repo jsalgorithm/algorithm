@@ -87,13 +87,13 @@ const networkDelayTime = function (times, n, k) {
 
   ```javascript
   const findCheapestPrice = function (n, flights, src, dst, k) {
-  	let prices = new Array(n).fill(Math.min());
+  	let prices = new Array(n).fill(Infinity);
   	prices[src] = 0;
   
   	for (let i = 0; i < k + 1; i++) {
   		const tempPrice = [...prices];
   		for (let [s, d, p] of flights) {
-  			if (prices[s] === Math.min()) continue;
+  			if (prices[s] === Infinity) continue;
   			if (prices[s] + p < tempPrice[d]) {
   				tempPrice[d] = prices[s] + p;
   			}
@@ -111,3 +111,17 @@ const networkDelayTime = function (times, n, k) {
   - 풀이내용 : 위 문제와 비슷..
 
   - 단 노드에 들릴 수 있는 횟수가 k번으로 제한되어있으므로 반복문에서 제한을 걸어준다.
+
+- example
+
+  ```
+  Input: n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1
+  Output: 200
+  Explanation: The graph is shown.
+  The cheapest price from city 0 to city 2 with at most 1 stop costs 200, as marked red in the picture.
+  ```
+
+  
+
+![img](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/02/16/995.png)
+

@@ -25,7 +25,7 @@
 
 예를들어, 아래와 같은 그래프의 최단경로를 찾고자 할 때 먼저 각 정점에서 다음 정점까지의 최단거리를 구합니다.
 
-![Screen Shot 2021-10-02 at 11.44.27 PM.png](https://github.com/jsalgorithm/algorithm/blob/main/docs/img/Screen%20Shot%202021-10-02%20at%2011.44.27%20PM.png?raw=true)
+![djikstra01.png](https://github.com/jsalgorithm/algorithm/blob/main/docs/img/djikstra01.png?raw=true)
 
 이후 각 정점에서 최단거리끼리의 합을 구하면 모든 노드를 지나치는 최단거리를 구할 수 있습니다.
 
@@ -33,7 +33,7 @@
 
 1. x,y,z에서 출발할 때 이웃한 정점까지 필요한 비용을 계산합니다.
 
-   ![Screen Shot 2021-10-02 at 11.45.58 PM.png](https://github.com/jsalgorithm/algorithm/blob/main/docs/img/Screen%20Shot%202021-10-02%20at%2011.45.58%20PM.png?raw=true)
+   ![djikstra02.png](https://github.com/jsalgorithm/algorithm/blob/main/docs/img/djikstra02.png?raw=true)
 
 2. 다음 노드로 이동하면서 최단경로로 업데이트합니다.
 
@@ -41,11 +41,11 @@
 
    2. Z -> X 의 경우, Y를 거치면 5만 소비되기 때문에 업데이트합니다.
 
-      ![Screen Shot 2021-10-02 at 11.47.05 PM.png](https://github.com/jsalgorithm/algorithm/blob/main/docs/img/Screen%20Shot%202021-10-02%20at%2011.47.05%20PM.png?raw=true)
+      ![djikstra03.png](https://github.com/jsalgorithm/algorithm/blob/main/docs/img/djikstra03.png?raw=true)
 
 3. 각각의 테이블에서, 새로운 정보를 업데이트합니다.
 
-   ![Screen Shot 2021-10-02 at 11.47.27 PM.png](https://github.com/jsalgorithm/algorithm/blob/main/docs/img/Screen%20Shot%202021-10-02%20at%2011.47.27%20PM.png?raw=true)
+   ![djikstra.04.png](https://github.com/jsalgorithm/algorithm/blob/main/docs/img/djikstra.04.png?raw=true)
 
    1. x에서 이동하는 경우는 모두 최단거리이므로 최종값입니다.
    2. y에서 이동하는 경우는 모두 최단거리이므로 최종값입니다.
