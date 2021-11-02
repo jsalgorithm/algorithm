@@ -37,3 +37,41 @@ const maxSubArray = function(nums) {
   return Math.max(...copy);
 };
 ```
+
+## Climbing Stairs
+### 문제 풀이
+1. 계단이 1개일 경우 오르는 방법은 1개이고, 계단이 2개일 경우 오르는 방법은 2개이므로 `n`이 3보다 작으면 `n`을 반환한다.
+2. `n`이 3 이상일 경우 연산 결과를 저장할 `cache`를 선언한다. key는 계단의 수, value는 계단을 오르는 방법의 수로 저장한다.
+3. `getCache` 재귀 함수를 선언하여 `n`과 `cache`를 인자로 넣고 실행한다.
+4. `cache`에 저장된 값이 없을 경우 계산하여 저장한다. 계산 공식은 아래를 사용한다. (피보나치 수열)
+```
+F(n) = F(n - 1) + F(n - 2)
+```
+5. 캐시된 값이 있는 경우 다시 계산할 필요가 없으므로 캐시된 값을 반환한다.
+6. 최종 결괏값을 반환한다.
+
+### 시간 복잡도
+O(n)
+
+### 제출 코드
+```javascript
+function getCache(n, cache) {
+  if (!!cache[n]) {
+    return cache[n];
+  }
+  
+  cache[n] = getCache(n - 1, cache) + getCache(n - 2, cache);
+  
+  return cache[n];
+}
+
+function climbStairs(n) {
+  if (n < 3) {
+    return n;
+  }
+  
+  const cache = { 1: 1, 2: 2 };
+
+  return getCache(n, cache);
+};
+```
