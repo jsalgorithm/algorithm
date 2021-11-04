@@ -205,12 +205,26 @@
 - 분할 정복
 
   - 발표자 : 정다빈
+    - https://github.com/jsalgorithm/algorithm/blob/main/docs/divide_conquer.md
   - 문제:
     - https://leetcode.com/problems/contains-duplicate/
     - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 
 - 그리디 알고리즘
   - 발표자 : 김유진
+    -
   - 문제:
     - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
     - https://leetcode.com/problems/assign-cookies/
+
+---
+
+# week 11 (2021.11.4)
+
+- DP
+
+  - 발표자 : 김연재
+    -
+  - 문제 :
+    - https://leetcode.com/problems/maximum-subarray/
+    - https://leetcode.com/problems/climbing-stairs/
