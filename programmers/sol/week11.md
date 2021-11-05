@@ -5,7 +5,7 @@ https://leetcode.com/problems/maximum-subarray/
 
 ### 문제풀이
 
-`카데인 알고리즘 => 최대 부분배열의 합은 이전 부분배열의 합 + 현재 인덱스의 값`
+`카데인 알고리즘 => 현재 부분배열의 합은 이전 부분배열의 합 + 현재 인덱스의 값`
 
 1. 두 번째 인덱스부터 시작하면서 nums 배열을 순회
 2. 현재 인덱스 값과 이전 부분배열의 합 중에서 더 큰 값으로 인덱스 값 변경
@@ -60,6 +60,8 @@ https://leetcode.com/problems/climbing-stairs/submissions/
 - 아직 계산하지 않는 값이라면 fibo(n - 1) + fibo(n - 2) 값을 dp[n]에 할당하고 반환
 
 4. 최종적으로 fibo(n) 반환
+
+![피보나치 수열 알고리즘 참고 사진](https://t1.daumcdn.net/cfile/tistory/99B94B4D5BDEAF3B14)
 
 ### 코드
 
