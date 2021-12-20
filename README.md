@@ -66,7 +66,7 @@
     - https://leetcode.com/problems/find-the-duplicate-number/
 
 - 해쉬
-  - 발표자 : 우강
+  - 발표자 : 홍인하
     - https://github.com/jsalgorithm/algorithm/blob/main/docs/Hash.md
   - 문제
     - https://programmers.co.kr/learn/courses/30/lessons/42576
@@ -101,7 +101,7 @@
     - https://leetcode.com/problems/last-stone-weight/
 
 - 이진트리
-  - 발표자: 우강
+  - 발표자: 홍인하
     - https://github.com/jsalgorithm/algorithm/blob/main/docs/Binary_Tree.md
   - 문제:
     - https://leetcode.com/problems/maximum-depth-of-binary-tree/
@@ -134,7 +134,7 @@
     - https://leetcode.com/problems/design-circular-deque/
     - https://www.acmicpc.net/problem/3190
 - 우선순위 큐
-  - 발표자: 우강
+  - 발표자: 홍인하
   - 문제:
     - https://leetcode.com/problems/merge-k-sorted-lists/
     - https://programmers.co.kr/learn/courses/30/lessons/42626
@@ -192,7 +192,7 @@
     - https://leetcode.com/problems/contains-duplicate-ii/
 
 - 비트조작
-  - 발표자 : 우강
+  - 발표자 : 홍인하
     - https://github.com/jsalgorithm/algorithm/blob/main/docs/bit_manipulation.md
   - 문제 :
     - https://leetcode.com/problems/single-number/
